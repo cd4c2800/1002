@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.7
+Version: 4.7.1
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+        <meta charset="utf-8" />
+        <title>地域分析</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="Preview page of Metronic Admin Theme #4 for statistics, charts, recent events and reports" name="description" />
+        <meta content="" name="author" />
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="$!webPath/resources/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL STYLES -->
+        <link href="$!webPath/resources/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="$!webPath/resources/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
+        <link href="$!webPath/resources/assets/layouts/layout4/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/layouts/layout4/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="$!webPath/resources/assets/layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME LAYOUT STYLES -->
+        <link rel="shortcut icon" href="favicon.ico" /> 
+        <link href="$!webPath/resources/css/jquery.yhhDataTable.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/css/template.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+.workinput {
+    background-color: #fff;
+    border: 1px solid #a5d2ec;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 5px;
+    width: 140px;
+    cursor: pointer;
+}
+.wicon {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAQCAYAAADj5tSrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwNi8xNS8xNGnF/oAAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAAAoElEQVQ4jWPceOnNfwYqAz9dYRQ+E7UtwAaGjyUsDAyYYUgJ2HT5LXZLcEmSCnA6duOlN///////H0bDALl8dPH/////Z8FuNW6Qtvw2nL3lyjsGBgYGhlmRqnj1kGwJuqHIlhJlCXq8EOITEsdqCXLEbbr8FisfFkTo+vBZRFZwERNEFFkCiw90nxJtCalxQmzegltCzVyP1RJq5HZ8AABuNZr0628DMwAAAABJRU5ErkJggg==");
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+.je-mr25 {
+    margin-right: 25px;
+}
+
+.form_btna {
+    background: #f2f4f6 none repeat scroll 0 0;
+    border-left: 1px solid #fff;
+    border-top: 1px solid #fff;
+    display: block;
+    height: 29px;
+    padding-left: 15px;
+    padding-right: 20px;
+    position: relative;
+    text-align: center;
+}
+.fshop_table th {
+    background: #f2f4f6 none repeat scroll 0 0;
+    border-bottom: 1px solid #c6c9ca;
+    border-right: 1px solid #c6c9ca;
+    border-top: 1px solid #c6c9ca;
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    white-space: nowrap;
+}
+</style>
+       </head>
+    <!-- END HEAD -->
+
+    <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="$!webPath/user/menu.htm?item=index">
+                        <img src="$!webPath/resources/assets/layouts/layout4/img/logo-light.png" alt="logo" class="logo-default" /> </a>
+                    <div class="menu-toggler sidebar-toggler">
+                        <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+                    </div>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                
+                <!-- BEGIN PAGE TOP -->
+                <div class="page-top">
+                   
+                    <!-- BEGIN TOP NAVIGATION MENU -->
+                    <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+                            <!-- BEGIN USER LOGIN DROPDOWN -->
+                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                            <li class="dropdown dropdown-user dropdown-dark">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <span class="username username-hide-on-mobile"> 张三 </span>
+                                    <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
+                                     </a>
+                                <ul class="dropdown-menu dropdown-menu-default">
+                                   
+                                    <li>
+                                        <a href="$!webPath/user/menu.htm?item=user_login">
+                                            <i class="icon-key"></i> 退出登录 </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END USER LOGIN DROPDOWN -->
+                        </ul>
+                    </div>
+                    <!-- END TOP NAVIGATION MENU -->
+                </div>
+                <!-- END PAGE TOP -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <!-- BEGIN SIDEBAR -->
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item  ">
+                            <a href="$!webPath/user/menu.htm?item=index" class="nav-link ">
+                                 <i class="icon-bar-chart"></i>
+                                 <span class="title">首页</span>
+                                  <span class="selected"></span>
+                             </a>
+                        </li>
+                        <li class="nav-item  ">
+                             <a href="$!webPath/user/menu.htm?item=index_OnLine" class="nav-link ">
+                                  <span class="title">当前在线</span>
+                              </a>
+                        </li>
+                        <li class="nav-item  ">
+                              <a href="$!webPath/user/visitdetails_list.htm" class="nav-link ">
+                                    <span class="title">访问明细</span>
+                              </a>
+                        </li>
+                        <li class="nav-item  ">
+                             <a href="$!webPath/user/menu.htm?item=index_Source" class="nav-link ">
+                                 <span class="title">来源分析</span>
+                             </a>
+                        </li>
+                       
+                        <li class="nav-item  active">
+                            <a href="$!webPath/user/region_day_list.htm" class="nav-link ">
+                                <span class="title">地域分析</span>
+                            </a>
+                        </li>
+                          
+                         <!-- 广告分析 -->
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <span class="title">广告分析</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="$!webPath/user/menu.htm?item=index_AdAnalysis" class="nav-link ">
+                                        <span class="title">广告分析</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="$!webPath/user/menu.htm?item=index_Channel" class="nav-link ">
+                                        <span class="title">渠道分析</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- 设置 -->
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <span class="title">设置</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                            	<li class="nav-item  ">
+                                    <a href="$!webPath/user/menu.htm?item=index_SiteSet" class="nav-link ">
+                                        <span class="title">站点设置</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="$!webPath/user/menu.htm?item=index_AdSet" class="nav-link ">
+                                        <span class="title">广告设置</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="$!webPath/user/menu.htm?item=index_User" class="nav-link ">
+                                        <span class="title">账户信息</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEAD-->
+                    <div class="page-head">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>地域分析
+                                <small><!-- （2017-08-31 至2017-08-31） --></small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                    <!-- END PAGE HEAD-->
+                    <form action="$!webPath/user/region_day_list.htm"  method="post" id="ListForm">
+                    <!-- 搜索条件 -->
+                    <div class="row">
+                        <div class="col-lg-6 col-xs-12 col-sm-12" style="width: 100%;">
+                        	<div class="portlet light bordered">
+                        		<div class="portlet-title">
+                                    <div class="caption">
+                                    	<!-- <button class="btn blue  btn-outline" type="button" style="border-color: #3598dc;background-color: #3598dc;color: #fff;">昨天</button>
+                                    	<button class="btn blue  btn-outline" type="button">最近七天</button> -->
+                                                                                                        开始日期 <input value="$!beginTime" name="beginTime" id="beginTime" type="text" placeholder="请选择"  readonly class="workinput wicon mr25">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                                        结束日期 <input value="$!endTime"  name="endTime"  id="endTime" type="text" placeholder="请选择"  readonly class="workinput wicon mr25">                                                                
+                                         <button class="btn blue  btn-outline" type="submit" style="border-color: #3598dc;background-color: #3598dc;color: #fff;">搜索</button>                                                               
+                                    </div>
+                                    
+                                </div>
+                        	</div>
+                        </div>
+                    </div>
+                    
+                    <!-- BEGIN PAGE BASE CONTENT -->
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="width: 26%;">
+                            <div class="dashboard-stat2 bordered">
+                                <div class="display">
+                                    <div class="number">
+                                        <h3 class="font-green-sharp">
+                                            <span data-counter="counterup" data-value="$!pv">0</span>
+                                        </h3>
+                                        <small>PV（浏览次数）</small>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="width: 26%;">
+                            <div class="dashboard-stat2 bordered">
+                                <div class="display">
+                                    <div class="number">
+                                        <h3 class="font-green-haze">
+                                            <span data-counter="counterup" data-value="$!uv">0</span>
+                                        </h3>
+                                        <small>UV（独立访客）</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="width: 26%;">
+                            <div class="dashboard-stat2 bordered">
+                                <div class="display">
+                                    <div class="number">
+                                        <h3 class="font-green-haze">
+                                            <span data-counter="counterup" data-value="$!ip">0</span>
+                                        </h3>
+                                        <small>IP（独立IP）</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="width: 26%;">
+                            <div class="dashboard-stat2 bordered">
+                                <div class="display">
+                                    <div class="number">
+                                        <h3 class="font-red-haze">
+                                            <span data-counter="counterup" data-value="$!epv">0</span>
+                                        </h3>
+                                        <small>EPV（异常浏览次数）</small>
+                                    </div>
+                                </div>
+                                <div class="progress-info">
+									<div class="progress">
+										<span class="progress-bar progress-bar-success red-haze" style="width: $!bpv%;"></span>
+									</div>
+									<div class="status">
+										<div class="status-title"> 占总浏览次数 </div>
+										<div class="status-number"> $!bpv% </div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="width: 26%;">
+                            <div class="dashboard-stat2 bordered">
+                                <div class="display">
+                                    <div class="number">
+                                        <h3 class="font-red-haze">
+                                            <span data-counter="counterup" data-value="$!euv">0</span>
+                                        </h3>
+                                        <small>EUV（异常独立访客）</small>
+                                    </div>
+                                </div>
+                                <div class="progress-info">
+									<div class="progress">
+										<span class="progress-bar progress-bar-success red-haze" style="width: $!buv%;"></span>
+									</div>
+									<div class="status">
+										<div class="status-title"> 占总独立访客 </div>
+										<div class="status-number"> $!buv% </div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="width: 26%;">
+                            <div class="dashboard-stat2 bordered">
+                                <div class="display">
+                                    <div class="number">
+                                        <h3 class="font-red-haze">
+                                            <span data-counter="counterup" data-value="$!eip">0</span>
+                                        </h3>
+                                        <small>EIP（异常独立IP）</small>
+                                    </div>
+                                </div>
+                                <div class="progress-info">
+									<div class="progress">
+										<span class="progress-bar progress-bar-success red-haze" style="width: $!bip%;"></span>
+									</div>
+									<div class="status">
+										<div class="status-title"> 占总独立IP </div>
+										<div class="status-number"> $!bip% </div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- 地图 -->
+                    <div class="row" style="display: none;">
+                        <div class="col-lg-6 col-xs-12 col-sm-12" >
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <span class="caption-subject bold uppercase font-dark">地图</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div id="test" style="height: 400px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-xs-12 col-sm-12" >
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <span class="caption-subject bold uppercase font-dark">饼图</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div id="bing" style="height: 400px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 地域列表 -->
+                    <div class="row">
+                        <div class="col-lg-6 col-xs-12 col-sm-12" style="width: 100%;">
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <span class="caption-subject bold uppercase font-dark">地域分类</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div  class="fshoptb">
+                                    	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fshop_table">
+											<thead>
+												<tr>
+													<th><span class="form_btna">地域名称</span></th>
+													<th><span class="form_btna">PV（浏览次数）</span></th>
+													<th><span class="form_btna">UV（独立访客）</span></th>
+													<th><span class="form_btna">IP（独立IP）</span></th>
+													<th><span class="form_btna">EPV（异常浏览次数）</span></th>
+													<th><span class="form_btna">EUV（异常独立访客）</span></th>
+													<th><span class="form_btna">EIP（异常独立IP）</span></th>
+													<!-- <th><span class="form_btna">渠道查看</span></th> -->
+												</tr>
+											</thead>
+											<tbody>
+												#if($!objs.size()>0)
+													#foreach($obj in $objs)
+														<tr>
+															<td align="center" id="province">$!areaUtil.getProvinceById("$!obj.provinceId")</td>#set($provinceName=$!areaUtil.getProvinceById("$!obj.provinceId"))
+															<td align="center">$!obj.pv</td>
+															<td align="center">$!obj.uv</td>
+															<td align="center">$!obj.ip</td>
+															<td align="center">$!obj.epv</td>
+															<td align="center">$!obj.euv</td>
+															<td align="center" style="font-size: 14px;"><a href="$!webPath/user/region_eip.htm?provinceName=$!provinceName">$!obj.eip</a></td>
+															<!-- <td align="center"><a href="$!webPath//user/region_Channel.htm">查看详情</a></td> -->
+														</tr>
+													#end
+												#else
+													<tr>
+														<td align="center" colspan="4"><span>该搜索暂时没有数据！</span></td>
+													</tr>
+												#end	
+											</tbody>
+										</table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 分页 -->
+                    <div class="operate_bar" style="height: 50px;">
+                    
+					    <div class="fenye">
+					     <span id="queryCondition" style="display:none"> </span>
+					    <input type="hidden" name="currentPage" id="currentPage" value="$!currentPage" />
+						  <input name="mulitId" type="hidden" id="mulitId" />
+						  $!gotoPageFormHTML</div>
+					 </div>  
+                    </form>
+                    
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+    
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="page-footer-inner"> 2016 &copy; Metronic Theme By
+                <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
+                <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+        <div class="quick-nav-overlay"></div>
+        <!-- END QUICK NAV -->
+
+        <!-- BEGIN CORE PLUGINS -->
+        <script src="$!webPath/resources/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="$!webPath/resources/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/horizontal-timeline/horizontal-timeline.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src="$!webPath/resources/assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="$!webPath/resources/assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="$!webPath/resources/assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/js/echarts.js"></script>
+        <script src="$!webPath/resources/js/china.js"></script>
+         
+        <script src="$!webPath/resources/js/jedate/jedate.js"></script>
+        <script src="$!webPath/resources/js/jquery.paginate.js"></script>
+        <script src="$!webPath/resources/js/index.js"></script>
+        <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
+        <script type="text/javascript">
+        
+      //选择日期
+        jeDate({
+       		dateCell:"#beginTime",//isinitVal:true,
+       		isinitVal:true,
+       		format:"YYYY-MM-DD",
+       	    skinCell:"jedateblue",
+       		isTime:false //isClear:false,
+       	});
+        jeDate({
+       		dateCell:"#endTime",//isinitVal:true,
+       		format:"YYYY-MM-DD",
+       	    isinitVal:true,
+       	    skinCell:"jedateblue",
+       		isTime:false //isClear:false,
+       	}); 
+       	
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = echarts.init(document.getElementById('test')); 
+                
+
+                function randomData() {
+                    return Math.round(Math.random()*1000);
+                }
+
+                option = {
+                    title: {
+                        text: '地域分布',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    
+                    visualMap: {
+                        min: 0,
+                        max: 2500,
+                        left: 'left',
+                        top: 'bottom',
+                        text: ['高','低'],           // 文本，默认为数值文本
+                        calculable: true
+                    },
+                    
+                    series: [
+                        {
+                            name: '访问量',
+                            type: 'map',
+                            mapType: 'china',
+                            roam: false,
+                            label: {
+                                normal: {
+                                    show: true
+                                },
+                                emphasis: {
+                                    show: true
+                                }
+                            },
+                            data:[
+                                {name: '北京',value: randomData() },
+                                {name: '天津',value: randomData() },
+                                {name: '上海',value: randomData() },
+                                {name: '重庆',value: randomData() },
+                                {name: '河北',value: randomData() },
+                                {name: '河南',value: randomData() },
+                                {name: '云南',value: randomData() },
+                                {name: '辽宁',value: randomData() },
+                                {name: '黑龙江',value: randomData() },
+                                {name: '湖南',value: randomData() },
+                                {name: '安徽',value: randomData() },
+                                {name: '山东',value: randomData() },
+                                {name: '新疆',value: 52 },
+                                {name: '江苏',value: randomData() },
+                                {name: '浙江',value: randomData() },
+                                {name: '江西',value: randomData() },
+                                {name: '湖北',value: randomData() },
+                                {name: '广西',value: randomData() },
+                                {name: '甘肃',value: randomData() },
+                                {name: '山西',value: randomData() },
+                                {name: '内蒙古',value: randomData() },
+                                {name: '陕西',value: randomData() },
+                                {name: '吉林',value: randomData() },
+                                {name: '福建',value: randomData() },
+                                {name: '贵州',value: randomData() },
+                                {name: '广东',value: randomData() },
+                                {name: '青海',value: randomData() },
+                                {name: '西藏',value: randomData() },
+                                {name: '四川',value: randomData() },
+                                {name: '宁夏',value: randomData() },
+                                {name: '海南',value: randomData() },
+                                {name: '台湾',value: randomData() },
+                                {name: '香港',value: randomData() },
+                                {name: '澳门',value: randomData() }
+                            ]
+                        }
+                        
+                    ]
+                };
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+   
+
+       			//饼图
+       			var myChart2 = echarts.init(document.getElementById('bing')); 
+       			option2 = {
+       				    title : {
+       				        x:'center'
+       				    },
+       				    tooltip : {
+       				        trigger: 'item',
+       				        formatter: "{a} <br/>{b} : {c} ({d}%)"
+       				    },
+       				    legend: {
+       				        orient: 'vertical',
+       				        left: 'left',
+       				        data: ['江苏省','广东省','北京市','其他省份','重庆市']
+       				    },
+       				    series : [
+       				        {
+       				            name: '访问来源',
+       				            type: 'pie',
+       				            radius : '55%',
+       				            center: ['50%', '60%'],
+       				            data:[
+       				                {value:335, name:'江苏省'},
+       				                {value:310, name:'广东省'},
+       				                {value:234, name:'北京市'},
+       				                {value:135, name:'其他省份'},
+       				                {value:1548, name:'重庆市'}
+       				            ],
+       				            itemStyle: {
+       				                emphasis: {
+       				                    shadowBlur: 10,
+       				                    shadowOffsetX: 0,
+       				                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+       				                }
+       				            }
+       				        }
+       				    ]
+       				};
+       			
+       			myChart2.setOption(option2); 
+
+        </script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+    </body>
+
+</html>
