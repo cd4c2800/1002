@@ -109,7 +109,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user dropdown-dark">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <span class="username username-hide-on-mobile"> 张三 </span>
+                                    <span class="username username-hide-on-mobile"> $!user.username</span>
                                     <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                                      </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
@@ -121,6 +121,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
+                        </ul>
+                    </div>
+                                      <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="dropdown dropdown-user dropdown-dark">                         
+                                <a href="$!webPath/user/menu.htm?item=index_SiteSet" class="dropdown-toggle" >
+                                    <span class="username username-hide-on-mobile"> 切换站点 </span>
+                                     </a>
+                            </li>
                         </ul>
                     </div>
                     <!-- END TOP NAVIGATION MENU -->
@@ -229,7 +238,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
                             <h1>渠道分析
-                                <small>（2017-08-31 至2017-08-31）</small>
+                               <small id="time"></small>
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
@@ -240,11 +249,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="col-lg-6 col-xs-12 col-sm-12" style="width: 100%;">
                         	<div class="portlet light bordered">
                         		<div class="portlet-title">
-                                    <div class="caption">
-                                    	<button class="btn blue  btn-outline" type="button" style="border-color: #3598dc;background-color: #3598dc;color: #fff;">今天</button>
-                                    	<button class="btn blue  btn-outline" type="button">昨天</button>
-                                    	<button class="btn blue  btn-outline" type="button">最近七天</button>
-                                                                        日期 <input id="indate" type="text" placeholder="请选择"  readonly class="workinput wicon mr25">
+                                    <div id="dateSelect" class="caption">                                           
+                                    	<button class="btn blue  btn-outline" type="button" style="border-color: #3598dc;background-color: #3598dc;color: #fff" >今天</button>
+                                    	<button class="btn blue  btn-outline" type="button"  >昨天</button>
+                                    	<button class="btn blue  btn-outline " type="button">最近七天</button>
+                                    	<button class="btn blue  btn-outline " type="button">其他</button>                                    
+                                                                        日 期 <input id="indate" type="text" placeholder="请选择"  readonly class="workinput wicon mr25">
                                     </div>
                                     
                                 </div>
@@ -259,7 +269,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="display">
                                     <div class="number">
                                         <h3 class="font-green-sharp">
-                                            <span data-counter="counterup" data-value="8000">0</span>
+                                            <span data-counter="counterup" id="pvSum"></span>
                                         </h3>
                                         <small>PV（浏览次数）</small>
                                     </div>
@@ -272,7 +282,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="display">
                                     <div class="number">
                                         <h3 class="font-green-haze">
-                                            <span data-counter="counterup" data-value="3000">0</span>
+                                            <span data-counter="counterup" data-value="3000" id="uvSum"></span>
                                         </h3>
                                         <small>UV（独立访问次数）</small>
                                     </div>
@@ -284,7 +294,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="display">
                                     <div class="number">
                                         <h3 class="font-green-haze">
-                                            <span data-counter="counterup" data-value="2000">0</span>
+                                            <span data-counter="counterup" data-value="2000" id="ipSum"></span>
                                         </h3>
                                         <small>IP（独立IP）</small>
                                     </div>
@@ -297,7 +307,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="display">
                                     <div class="number">
                                         <h3 class="font-red-haze">
-                                            <span data-counter="counterup" data-value="800">0</span>
+                                            <span data-counter="counterup" data-value="800" id="epvSum"></span>
                                         </h3>
                                         <small>EPV（异常浏览次数）</small>
                                     </div>
@@ -318,7 +328,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="display">
                                     <div class="number">
                                         <h3 class="font-red-haze">
-                                            <span data-counter="counterup" data-value="600">0</span>
+                                            <span data-counter="counterup" data-value="600" id="euvSum"></span>
                                         </h3>
                                         <small>EUV（异常独立访问次数）</small>
                                     </div>
@@ -382,7 +392,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                 </div>
                                 <div class="portlet-body">
-                                    <div  style="height:auto;">
+                                    <div id="detalis" style="height:auto;">
                                     	<table id="makes">
 											<thead><tr>
 												<th>渠道</th><th>PV（浏览次数）</th><th>UV（独立访客）</th><th>IP（独立IP）</th><th>EPV（异常浏览次数）</th><th>EUV（异常独立访客）</th><th>EIP（异常独立IP）</th><th>广告查看</th>
@@ -432,7 +442,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="$!webPath/resources/assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
         <script src="$!webPath/resources/assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
         <script src="$!webPath/resources/assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
-        <script src="$!webPath/resources/assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+        <!-- <script src="$!webPath/resources/assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script> -->
         <script src="$!webPath/resources/assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
         <script src="$!webPath/resources/assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
         <script src="$!webPath/resources/assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
@@ -476,147 +486,244 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="$!webPath/resources/js/jedate/jedate.js"></script>
         <script src="$!webPath/resources/js/jquery.paginate.js"></script>
         <script src="$!webPath/resources/js/jquery.yhhDataTable.js"></script>
-        <script src="$!webPath/resources/js/index.js"></script>
-        <script type="text/javascript">       	 
-            jQuery.ajax({
-      		  url: "$!webPath/user/channelList.htm",     
-      		    type: "post",               
-      		   	dataType: "json",      
-      		    success:function(data){
-      		    	if(data.status == 'success'){
-     		    	
-      		    		//document.getElementById("make").value=data.make;     
-      		    		$('#makes').yhhDataTable({
-      		    			'paginate':{
-      		    				'changeDisplayLen':true,
-      		    				'type':'updown',
-      		    				'visibleGo': true
-      		    			},
-      		    			'tbodyRow':{
-      		    				'zebra':true
-      		    			},
-      		    			'tbodyData':{
-      		    				'enabled':true,  /*是否传入表格数据*/
-      		    				'source':data.makes /*传入的表格数据*/
-      		    			}
-      		    		});
-      		    		
-      		    		
-      		    		
-      		    	}
-      		    	
-      		    }
-      	});
+        <!--  <script src="$!webPath/resources/js/index.js"></script>-->
       
-        </script>
        
         
-        <script type="text/javascript">
-        
-      //倒计时
-        var date = 120;
-        window.setTimeout("update()",1000);
-        
-        function update(){
-        	if(date>0){
-        		jQuery("#update").html(date);
-        		date--;
-        		window.setTimeout("update()",1000);
-        	}else{
-        		date = 120;
-        		window.setTimeout("update()",1000);
-        	}
-        	
+         <script type="text/javascript">
+        Date.prototype.Format = function (fmt) { //author: meizz 
+            var o = {
+                "M+": this.getMonth() + 1, //月份 
+                "d+": this.getDate(), //日 
+                "h+": this.getHours(), //小时 
+                "m+": this.getMinutes(), //分 
+                "s+": this.getSeconds(), //秒 
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+                "S": this.getMilliseconds() //毫秒 
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
         }
-        //选择日期
-         jeDate({
-        		dateCell:"#indate",//isinitVal:true,
-        		format:"YYYY-MM-DD",
-        	    isinitVal:true,
-        	    skinCell:"jedateblue",
-        		isTime:false, //isClear:false,
-        		minDate:"2017-08-24",
-        		maxDate:"2017-08-31"
-        	});
-        
-                // 基于准备好的dom，初始化echarts图表
-                var myChart = echarts.init(document.getElementById('test')); 
-                
+		var mindate=new Date("$!user.createTime").Format("yyyy-MM-dd");
+		var nowdate=new Date();
+			//nowdate.setDate(nowdate.getDate()-1);
+		var maxdate=nowdate.Format("yyyy-MM-dd");
+	      //选择日期
+	        jeDate({
+	       		dateCell:"#indate",//isinitVal:true,
+	       		format:"YYYY-MM-DD",
+	       	    isinitVal:true,
+	       	    skinCell:"jedateblue",
+	       		isTime:false, //isClear:false,
+	       		minDate:mindate,
+	       		maxDate:maxdate
+	       	});
+	     // 基于准备好的dom，初始化echarts图表
+	         var myChart = echarts.init(document.getElementById('test'));	
+	      
+	      //请求 来源分析数据 
+	     var buttonSwitch= jQuery("#dateSelect").find("button");
+	     jQuery("#time").text(maxdate);
+		 //控制 二次点击事件
+		 	  var way="";
+	    	  var time=jQuery("#time");
+	    	  var dayWay=0;
+		 	  var controll=0;
+		 
+		 
+		 
+	     buttonSwitch.click(function(){
+	    	 //获得 所用 button 兄弟节点
+	    	var otherButton= jQuery(this).siblings("button") ;
+	    	otherButton.removeAttr("style");
+	    	accessData(this,way,time,dayWay);	    	 
+	     });      
 
-                option = {
-                    tooltip : {
-                        trigger: 'axis',
-                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                        }
-                    },
-                    legend: {
-                        data:['PV（浏览次数）','UV（独立访问次数）','IP（独立IP）','EPV（异常浏览次数）','EUV（异常独立访问次数）','EIP（异常独立IP）']
-                    },
-                    grid: {
-                        left: '3%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true
-                    },
-                    xAxis : [
-                        {
-                            type : 'category',
-                            data : ['周一','周二','周三','周四','周五','周六','周日']
-                        }
-                    ],
-                    yAxis : [
-                        {
-                            type : 'value'
-                        }
-                    ],
-                    series : [
-                        {
-                            name:'PV（浏览次数）',
-                            type:'bar',
-                            stack: 'PV',
-                            data:[320, 332, 301, 334, 390, 330, 320]
-                        },
-                        {
-                            name:'UV（独立访问次数）',
-                            type:'bar',
-                            stack: 'UV',
-                            data:[120, 132, 101, 134, 90, 230, 210]
-                        },
-                        {
-                            name:'IP（独立IP）',
-                            type:'bar',
-                            stack: 'IP',
-                            data:[220, 182, 191, 234, 290, 330, 310]
-                        },
-                        {
-                            name:'EPV（异常浏览次数）',
-                            type:'bar',
-                            stack: 'PV',
-                            data:[150, 232, 201, 154, 190, 330, 410]
-                        },
-                        {
-                            name:'EUV（异常独立访问次数）',
-                            type:'bar',
-                            stack: 'UV',
-                            data:[862, 1018, 964, 1026, 1679, 1600, 1570],
-                        },
-                        {
-                            name:'EIP（异常独立IP）',
-                            type:'bar',
-                            stack: 'IP',
-                            data:[620, 732, 701, 734, 1090, 1130, 1120]
-                        }
-                    ]
-                };
+	      //请求数据的 方法
+	      accessData(null,way,time,dayWay);
+	 		function accessData(obj,way,time,dayWay){
+	    	  if (obj!=null) way=$(obj).text();
+	       		var endIime=new Date(); // 结束时间
+	          	var startTime=new Date();//开始时间
+	    	  	if (way=="昨天") {
+	    	  		
+	    	  		endIime.setHours(00, 00, 00,0);//设置小时 分 秒  
+	    	  		startTime.setDate(startTime.getDate()-1);//设置 天
+	    	  		startTime.setHours(00, 00, 00,0);//设置小时 分 秒	    
+	    	  		dayWay=1;
+	    	  		time.text(startTime.Format("yyyy-MM-dd"));
+	    	  		$(obj).next().next().next().val(startTime.Format("yyyy-MM-dd"));
+	    	  		
+				}else if(way=="其他"){
+					
+					var now=endIime.Format("yyyy-MM-dd");
+					var other=$(obj).next().val();
+					if (now==other) return;
+					endIime=new Date(other);
+					startTime=new Date(other);
+					endIime.setHours(24, 00, 00,0);//设置小时 分 秒
+					startTime.setHours(00, 00, 00,0);//设置小时 分 秒	 
+					dayWay=3;
+					time.text(other);
+					
+				}else if(way=="最近七天"){
+					
+					endIime.setHours(00,00, 00,00);
+					startTime.setDate(startTime.getDate()-7);
+					startTime.setHours(00, 00, 00,0);
+					dayWay=2;
+					time.text(startTime.Format("yyyy-MM-dd")+"至"+endIime.Format("yyyy-MM-dd"));
+					controll=1;
+				}	
+				else {
+					
+					startTime.setHours(00, 00, 00,0);//设置小时 分 秒	 ;
+					time.text((new Date()).Format("yyyy-MM-dd"));
+					$(obj).nextAll('input').val(startTime.Format("yyyy-MM-dd"));
+					
+				}
+	          	
+	    		jQuery("#detalis").children().remove();
+	      		jQuery("#detalis").append("<table id='makes'><thead><tr><th>渠道</th><th>PV（浏览次数）</th><th>UV（独立访客）</th><th>IP（独立IP）</th><th>EPV（异常浏览次数）</th><th>EUV（异常独立访客）</th><th>EIP（异常独立IP）</th><th>广告查看</th></tr></thead><tbody></tbody></table>");
+  
+	          	
+	    	  	jQuery.ajax({
+	    	  	      async: false, //定义 全局变量时 需加
+		      		  url: "$!webPath/user/channelList.htm",     
+		      		    type: "post",               
+		      		   	dataType: "json",  
+		      		    data:{siteId:1,dayway:dayWay,begin:startTime,end:endIime,userId:"$!user.id"},
+		      		    success:function(data){
+		      		    	if(data.status == 'success'){
+		      		    		
 
+		      		    		
+		      		    		
+		      		    		$('#makes').yhhDataTable({
+		      		    			'paginate':{
+		      		    				'changeDisplayLen':true,
+		      		    				'type':'updown',
+		      		    				'visibleGo': true
+		      		    			},
+		      		    			'tbodyRow':{
+		      		    				'zebra':true
+		      		    			},	      		    		
+		      		    			'tbodyData':{
+		      		    				'enabled':true,  /*是否传入表格数据*/
+		      		    				'source':data.makes /*传入的表格数据*/
+		      		    			}
+		      		    		});
+		      		    		
+		      		    		
+		      		    	
+		      		    	}
+		      		    	
+		      		    }
+		      	});
+	    	  //发送请求
+	         jQuery.ajax({
+	              async: false, //定义 全局变量时 需加
+	          	  type: 'POST',
+	          	  url: "$!webPath/user/channel_zZtu.htm",
+	          	  data:{siteId:1,dayway:dayWay,begin:startTime,end:endIime,userId:"$!user.id"},
+	          	  dataType: "json",
+	          	  success:function(data){
+	          		  
+	          		jQuery("#pvSum").text(data.pvSum);  
+	          		jQuery("#uvSum").text(data.uvSum);    
+	          		jQuery("#ipSum").text(data.ipSum);  
+	          		jQuery("#epvSum").text(data.epvSum);  
+	          		jQuery("#euvSum").text(data.euvSum);  
+	          		jQuery("#eipSum").text(data.eipSum);  
+	          		  
+	                  option = {
+	                          tooltip : {
+	                              trigger: 'axis',
+	                              axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+	                                  type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+	                              }
+	                          },
+	                          legend: {
+	                              data:['PV（浏览次数）','UV（独立访问次数）','IP（独立IP）','EPV（异常浏览次数）','EUV（异常独立访问次数）','EIP（异常独立IP）']
+	                          },
+	                          grid: {
+	                              left: '3%',
+	                              right: '4%',
+	                              bottom: '3%',
+	                              containLabel: true
+	                          },
+	                          xAxis : [
+	                              {
+	                                  type : 'category',
+	                                  data :  data.category
+	                              }
+	                          ],
+	                          yAxis : [
+	                              {
+	                                  type : 'value'
+	                              }
+	                          ],
+	                          series : [
+	                              {
+	                                  name:'PV（浏览次数）',
+	                                  type:'bar',
+	                                  stack: 'PV',
+	                                  data:data.pv
+	                              },
+	                              {
+	                                  name:'UV（独立访问次数）',
+	                                  type:'bar',
+	                                  stack: 'UV',
+	                                  data:data.uv
+	                              },
+	                              {
+	                                  name:'IP（独立IP）',
+	                                  type:'bar',
+	                                  stack: 'IP',
+	                                  data:data.ip
+	                              },
+	                              {
+	                                  name:'EPV（异常浏览次数）',
+	                                  type:'bar',
+	                                  stack: 'PV',
+	                                  data:data.epv
+	                              },
+	                              {
+	                                  name:'EUV（异常独立访问次数）',
+	                                  type:'bar',
+	                                  stack: 'UV',
+	                                  data:data.euv,
+	                              },
+	                              {
+	                                  name:'EIP（异常独立IP）',
+	                                  type:'bar',
+	                                  stack: 'IP',
+	                                  data:data.eip
+	                              }
+	                          ]
+	                      };
 
-
-                // 为echarts对象加载数据 
-                myChart.setOption(option); 
-   
-
-       
+	                      // 为echarts对象加载数据 
+	                      myChart.setOption(option); 
+	                      // 处理列表数据
+		          		  console.info(data.source);
+	                      
+	                      
+	                      
+	          	 	 }
+	          	  
+	            
+	            });
+	    	  
+	    	  
+	    	  
+	         
+	    	  
+	    	  	
+	     	 };
+	     	
         </script>
         <!-- END THEME LAYOUT SCRIPTS -->
     </body>

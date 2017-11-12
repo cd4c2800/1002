@@ -14,6 +14,10 @@ import com.web.core.domain.IdEntity;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Ada_access_stat_day_ad extends IdEntity{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4345539689094937746L;
 	private int siteId;//站点ID
 	private int domainId;//域名id
 	private int adId;//广告id
@@ -25,15 +29,6 @@ public class Ada_access_stat_day_ad extends IdEntity{
 	private int epv;//异常访问数
 	private Date startTime;//开始时间
 	private Date endTime;//结束时间
-	private String Nurename;//游戏名称
-	
-	
-	public String getNurename() {
-		return Nurename;
-	}
-	public void setNurename(String nurename) {
-		Nurename = nurename;
-	}
 	public int getSiteId() {
 		return siteId;
 	}

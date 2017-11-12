@@ -31,7 +31,7 @@ public interface IAdService {
 	 * @param id
 	 * @return
 	 */
-	boolean delete(Long id);
+	boolean delete(Integer id);
 	
 	/**
 	 * 批量删除Ad

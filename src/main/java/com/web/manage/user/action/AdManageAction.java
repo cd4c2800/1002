@@ -137,7 +137,7 @@ public class AdManageAction {
 		for (String id : ids) {
 			if (!id.equals("")) {
 			  Ad ad = this.adService.getObjById(Long.parseLong(id));
-			  this.adService.delete(Long.parseLong(id));
+			  this.adService.delete(CommUtil.null2Int(id));
 			}
 		}
 		return "redirect:ad_list.htm?currentPage="+currentPage;

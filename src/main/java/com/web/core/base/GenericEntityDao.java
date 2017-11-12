@@ -332,7 +332,7 @@ public class GenericEntityDao extends JpaDaoSupport {
 	 * */
 	public Long getSum(final String queryStr,final Map params) {
 		Long pv=0L;
-		 Object object = this.getJpaTemplate().execute(new JpaCallback() {
+		 List object = this.getJpaTemplate().execute(new JpaCallback() {
 			@Override
 			public Object doInJpa(EntityManager em) throws PersistenceException {
 				// TODO Auto-generated method stub
@@ -343,11 +343,11 @@ public class GenericEntityDao extends JpaDaoSupport {
 					}
 				}
 				query.setHint("org.hibernate.cacheable", true);
-				return query.getSingleResult();
+				return query.getResultList();
 			}
 
 		});
-		if (object!=null) pv=Long.valueOf(object.toString());
+		if (object!=null&&!object.isEmpty()) pv=Long.valueOf(object.get(0).toString());
 		return pv;
 	}
 

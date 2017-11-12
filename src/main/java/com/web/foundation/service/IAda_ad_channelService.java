@@ -31,7 +31,7 @@ public interface IAda_ad_channelService {
 	 * @param id
 	 * @return
 	 */
-	boolean delete(Long id);
+	boolean delete(Integer id);
 	
 	/**
 	 * 批量删除Ada_ad_channel

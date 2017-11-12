@@ -53,8 +53,10 @@ License: You must have a valid license purchased only from themeforest(the above
 		
 			location.href="http://192.168.0.101:8080/my-web/2.html";
 		</script> -->
-		<link href="$!webPath/resources/css/jquery.paginate.css" rel="stylesheet" type="text/css" />
-    	<link href="$!webPath/resources/css/jquery.yhhDataTable.css" rel="stylesheet" type="text/css" />
+		
+		
+		<link href="$!webPath/resources/css/template.css" rel="stylesheet" type="text/css" />
+		
 		<style type="text/css">
 
 .workinput {
@@ -177,7 +179,7 @@ License: You must have a valid license purchased only from themeforest(the above
                               </a>
                         </li>
                         <li class="nav-item  ">
-                              <a href="$!webPath/user/menu.htm?item=index_VisitDetails" class="nav-link ">
+                              <a href="$!webPath/user/visitdetails_list.htm" class="nav-link ">
                                     <span class="title">访问明细</span>
                               </a>
                         </li>
@@ -188,7 +190,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </li>
                        
                         <li class="nav-item  active">
-                            <a href="$!webPath/user/menu.htm?item=index_Region" class="nav-link ">
+                            <a href="$!webPath/user/region_day_list.htm" class="nav-link ">
                                 <span class="title">地域分析</span>
                             </a>
                         </li>
@@ -258,19 +260,16 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- END PAGE TITLE -->
                     </div>
                     <!-- END PAGE HEAD-->
-                    
+                    <form action="$!webPath/user/region_eip.htm"  method="post" id="ListForm">
                     <!-- 搜索条件 -->
                     <div class="row">
                         <div class="col-lg-6 col-xs-12 col-sm-12" style="width: 100%;">
                         	<div class="portlet light bordered">
                         		<div class="portlet-title">
                                     <div class="caption">
-                                    
-                                    	<button class="btn blue  btn-outline" type="button" style="border-color: #3598dc;background-color: #3598dc;color: #fff;">今天</button>
-                                    	<button class="btn blue  btn-outline" type="button">昨天</button>
-                                    	<button class="btn blue  btn-outline" type="button">最近七天</button>
-                                    
-                                                                        日期 <input id="indate" type="text" placeholder="请选择"  readonly class="workinput wicon mr25">
+                                    	开始日期 <input value="$!beginTime" name="beginTime" id="beginTime" type="text" placeholder="请选择"  readonly class="workinput wicon mr25">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                                        结束日期 <input value="$!endTime"  name="endTime"  id="endTime" type="text" placeholder="请选择"  readonly class="workinput wicon mr25">                                                                
+                                         <button class="btn blue  btn-outline" type="submit" style="border-color: #3598dc;background-color: #3598dc;color: #fff;">搜索</button>
                                     </div>
                                     
                                 </div>
@@ -281,23 +280,38 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- 来源列表 -->
                     <div class="row">
                         <div class="col-lg-6 col-xs-12 col-sm-12" style="width: 100%;">
-                            <div class="portlet light bordered">
+                            <div class="portlet light bordered" style="padding: 12px 20px 0px;margin-bottom: 0px;">
                                 <div class="portlet-title">
                                     <div class="caption">
                                         <span class="caption-subject bold uppercase font-dark">EIP分类</span>
                                     </div>
                                 </div>
                                 <div class="portlet-body">
-                                    <div  style="height:auto;">
-                                    	<table id="EIP" class="table">
+                                    <div  class="fshoptb">
+                                    	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fshop_table">
 											<thead>
-											 <tr>
-												<th class="th">EIP</th>
-												<th class="th">EPV（异常浏览次数）</th>
-												<th class="th">异常类型</th>
-												<th class="th">操作</th>
-											</tr></thead>
+												<tr>
+													<th><span class="form_btna">EIP</span></th>
+													<th><span class="form_btna">EPV（异常浏览次数）</span></th>
+													<th><span class="form_btna">异常类型</span></th>
+													<th><span class="form_btna">操作</span></th>
+												</tr>
+											</thead>
 											<tbody>
+												#if($!objs.size()>0)
+													#foreach($obj in $objs)
+														<tr>
+															<td align="center">$!obj.remoteIp</td>
+															<td align="center">$!obj.epv</td>
+															<td align="center">$!obj.exceType</td>
+															<td align="center"><a>查看ip详情</a></td>
+														</tr>
+													#end
+												#else
+													<tr>
+														<td align="center" colspan="4"><span>该搜索暂时没有数据！</span></td>
+													</tr>
+												#end	
 											</tbody>
 										</table>
                                     </div>
@@ -305,6 +319,19 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- 分页 -->
+                    <div class="operate_bar" style="height: 50px;">
+					    <div class="fenye">
+					     <span id="queryCondition" style="display:none"> </span>
+					    <input type="hidden" name="currentPage" id="currentPage" value="$!currentPage" />
+					    <input type="hidden" name="provinceName" id="provinceName" value="$!provinceName" />
+					    <input type="hidden" name="provinceId" id="provinceId" value="$!provinceId" />
+						  <input name="mulitId" type="hidden" id="mulitId" />
+						  $!gotoPageFormHTML</div>
+					 </div>  
+                    </form>
+                    
                 </div>
                 <!-- END CONTENT BODY -->
             </div>
@@ -384,19 +411,25 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="$!webPath/resources/js/index.js"></script>
         <script src="$!webPath/resources/js/jedate/jedate.js"></script>
         <script src="$!webPath/resources/js/layer/layer.js"></script>
+        <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
         
         <script type="text/javascript">
         
 	      //选择日期
 	        jeDate({
-	       		dateCell:"#indate",//isinitVal:true,
+	       		dateCell:"#beginTime",//isinitVal:true,
+	       		isinitVal:true,
+	       		format:"YYYY-MM-DD",
+	       	    skinCell:"jedateblue",
+	       		isTime:false //isClear:false,
+	       	});
+	        jeDate({
+	       		dateCell:"#endTime",//isinitVal:true,
 	       		format:"YYYY-MM-DD",
 	       	    isinitVal:true,
 	       	    skinCell:"jedateblue",
-	       		isTime:false, //isClear:false,
-	       		minDate:"2017-08-24",
-	       		maxDate:"2017-08-31"
-	       	});
+	       		isTime:false //isClear:false,
+	       	}); 
 	      
 	      	//查看异常ip详情
 	        function details(){

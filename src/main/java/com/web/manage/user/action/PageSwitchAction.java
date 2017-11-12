@@ -1,5 +1,10 @@
 package com.web.manage.user.action;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,10 +32,10 @@ public class PageSwitchAction {
 		if (siteId!=null)
 			request.getSession().setAttribute("currentSiteId", siteId);
 		//用于 验证用户是否 登录（未登录 直接跳转到主页）
-		if (!"user_login".equals( item )&&request.getSession().getAttribute("user")!=null  )
-
+		if (!"user_login".equals( item )&&request.getSession().getAttribute("user")!=null  ) {		
 			return new JModelAndView("/user/html/"+item+".html",0, request,response);
 			
+		}			
 		else 
 			return new JModelAndView("/user/html/user_login.html", 0, request, response);
 	}

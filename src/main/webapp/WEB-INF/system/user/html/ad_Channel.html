@@ -109,7 +109,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user dropdown-dark">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <span class="username username-hide-on-mobile"> 张三 </span>
+                                    <span class="username username-hide-on-mobile"> $!user.username </span>
                                     <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                                      </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
@@ -141,14 +141,14 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="page-sidebar navbar-collapse collapse">
                     <!-- BEGIN SIDEBAR MENU -->
                     <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                        <li class="nav-item  ">
+                        <li class="nav-item start active ">
                             <a href="$!webPath/user/menu.htm?item=index" class="nav-link ">
                                  <i class="icon-bar-chart"></i>
                                  <span class="title">首页</span>
                                   <span class="selected"></span>
                              </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item">
                              <a href="$!webPath/user/menu.htm?item=index_OnLine" class="nav-link ">
                                   <span class="title">当前在线</span>
                               </a>
@@ -171,13 +171,13 @@ License: You must have a valid license purchased only from themeforest(the above
                         </li>
                           
                          <!-- 广告分析 -->
-                        <li class="nav-item  active open">
+                        <li class="nav-item  ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <span class="title">广告分析</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item active">
+                                <li class="nav-item  ">
                                     <a href="$!webPath/user/menu.htm?item=index_AdAnalysis" class="nav-link ">
                                         <span class="title">广告分析</span>
                                     </a>
@@ -202,7 +202,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="#" class="nav-link ">
+                                    <a href="$!webPath/user/menu.htm?item=index_AdSet" class="nav-link ">
                                         <span class="title">广告设置</span>
                                     </a>
                                 </li>
@@ -228,8 +228,8 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="page-head">
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
-                            <h1>广告分析 - $!name
-                                <small>（2017-08-31 至2017-08-31）</small>
+                            <h1>广告分析 -<span id="adname"></span>
+                                     <small id="time"></small>
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
@@ -240,11 +240,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="col-lg-6 col-xs-12 col-sm-12" style="width: 100%;">
                         	<div class="portlet light bordered">
                         		<div class="portlet-title">
-                                    <div class="caption">
-                                    	<button class="btn blue  btn-outline" type="button" style="border-color: #3598dc;background-color: #3598dc;color: #fff;">今天</button>
-                                    	<button class="btn blue  btn-outline" type="button">昨天</button>
-                                    	<button class="btn blue  btn-outline" type="button">最近七天</button>
-                                                                        日期 <input id="indate" type="text" placeholder="请选择"  readonly class="workinput wicon mr25">
+                                     <div id="dateSelect" class="caption">                                           
+                                    	<button class="btn blue  btn-outline" type="button" style="border-color: #3598dc;background-color: #3598dc;color: #fff" >今天</button>
+                                    	<button class="btn blue  btn-outline" type="button"  >昨天</button>
+                                    	<button class="btn blue  btn-outline " type="button">最近七天</button>
+                                    	<button class="btn blue  btn-outline " type="button">其他</button>                                    
+                                                                        日 期 <input id="indate" type="text" placeholder="请选择"  readonly class="workinput wicon mr25">
                                     </div>
                                     
                                 </div>
@@ -263,7 +264,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                 </div>
                                 <div class="portlet-body">
-                                    <div  style="height:auto;">
+                                    <div id="detalis" style="height:auto;">
                                     	<table id="makes">
 											<thead><tr>
 												<th>渠道名称</th><th>PV（浏览次数）</th><th>UV（独立访客）</th><th>IP（独立IP）</th><th>EPV（异常浏览次数）</th><th>EUV（异常独立访客）</th><th>EIP（异常独立IP）</th>
@@ -358,16 +359,111 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="$!webPath/resources/js/jquery.paginate.js"></script>
         <script src="$!webPath/resources/js/jquery.yhhDataTable.js"></script>
         <script src="$!webPath/resources/js/index.js"></script>
-        <script src="$!webPath/resources/js/jedate/jedate.js"></script>
-         <script type="text/javascript">       	 
+        <script src="$!webPath/resources/js/jedate/jedate.js"></script>           
+          <script type="text/javascript">  
+          Date.prototype.Format = function (fmt) {
+          var o = {
+                  "M+": this.getMonth() + 1, //月份 
+                  "d+": this.getDate(), //日 
+                  "h+": this.getHours(), //小时 
+                  "m+": this.getMinutes(), //分 
+                  "s+": this.getSeconds(), //秒 
+                  "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+                  "S": this.getMilliseconds() //毫秒 
+              };
+              if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+              for (var k in o)
+              if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+              return fmt;
+          }
+  		var mindate=new Date("$!user.createTime").Format("yyyy-MM-dd");
+  		var nowdate=new Date();
+  			//nowdate.setDate(nowdate.getDate()-1);
+  		var maxdate=nowdate.Format("yyyy-MM-dd");
+  	      //选择日期
+  	        jeDate({
+  	       		dateCell:"#indate",//isinitVal:true,
+  	       		format:"YYYY-MM-DD",
+  	       	    isinitVal:true,
+  	       	    skinCell:"jedateblue",
+  	       		isTime:false, //isClear:false,
+  	       		minDate:mindate,
+  	       		maxDate:maxdate
+  	       	});
+  	     // 基于准备好的dom，初始化echarts图表
+  	       
+  	      //请求 来源分析数据 
+  	     var buttonSwitch= jQuery("#dateSelect").find("button");
+  	     jQuery("#time").text(maxdate);
+  		 //控制 二次点击事件
+  		 	  var way="";
+  	    	  var time=jQuery("#time");
+  	    	  var dayWay=0;
+  		 	  var controll=0;
+  		 
+  		 
+  		 
+  	     buttonSwitch.click(function(){
+  	    	 //获得 所用 button 兄弟节点
+  	    	var otherButton= jQuery(this).siblings("button") ;
+  	    	otherButton.removeAttr("style");
+  	    	accessData(this,way,time,dayWay);	    	 
+  	     });      
+
+  	      //请求数据的 方法
+  	      accessData(null,way,time,dayWay);
+  	 		function accessData(obj,way,time,dayWay){
+  	    	  if (obj!=null) way=$(obj).text();
+  	       		var endIime=new Date(); // 结束时间
+  	          	var startTime=new Date();//开始时间
+  	    	  	if (way=="昨天") {
+  	    	  		
+  	    	  		endIime.setHours(00, 00, 00,0);//设置小时 分 秒  
+  	    	  		startTime.setDate(startTime.getDate()-1);//设置 天
+  	    	  		startTime.setHours(00, 00, 00,0);//设置小时 分 秒	    
+  	    	  		dayWay=1;
+  	    	  		time.text(startTime.Format("yyyy-MM-dd"));
+  	    	  		$(obj).next().next().next().val(startTime.Format("yyyy-MM-dd"));
+  	    	  		
+  				}else if(way=="其他"){
+  					
+  					var now=endIime.Format("yyyy-MM-dd");
+  					var other=$(obj).next().val();
+  					if (now==other) return;
+  					endIime=new Date(other);
+  					startTime=new Date(other);
+  					endIime.setHours(24, 00, 00,0);//设置小时 分 秒
+  					startTime.setHours(00, 00, 00,0);//设置小时 分 秒	 
+  					dayWay=3;
+  					time.text(other);
+  					
+  				}else if(way=="最近七天"){
+  					
+  					endIime.setHours(00,00, 00,00);
+  					startTime.setDate(startTime.getDate()-7);
+  					startTime.setHours(00, 00, 00,0);
+  					dayWay=2;
+  					time.text(startTime.Format("yyyy-MM-dd")+"至"+endIime.Format("yyyy-MM-dd"));
+  					controll=1;
+  				}	
+  				else {
+  					
+  					startTime.setHours(00, 00, 00,0);//设置小时 分 秒	 ;
+  					time.text((new Date()).Format("yyyy-MM-dd"));
+  					$(obj).nextAll('input').val(startTime.Format("yyyy-MM-dd"));
+  					
+  				} 	    	 
+  	    		jQuery("#detalis").children().remove();
+	      		jQuery("#detalis").append("<table id='makes'><thead><tr><th>渠道名称</th><th>PV（浏览次数）</th><th>UV（独立访客）</th><th>IP（独立IP）</th><th>EPV（异常浏览次数）</th><th>EUV（异常独立访客）</th><th>EIP（异常独立IP）</th></tr></thead><tbody></tbody></table>");       	
             jQuery.ajax({
       		  url: "$!webPath/user/ad_channel_list.htm",     
       		    type: "post",  
-      		    data: {"siteId":jQuery("#siteid").val(),"adId":jQuery("#adId").val()},
+      		    data: {"siteId":jQuery("#siteid").val(),"adId":jQuery("#adId").val(),dayway:dayWay,begin:startTime,end:endIime,userId:"$!user.id"},
       		   	dataType: "json",      
       		    success:function(data){
-      		    	if(data.status == 'success'){   		    	 
-      		    		//document.getElementById("make").value=data.make;     
+      		    	if(data.status == 'success'){ 
+      		    		
+      		    		jQuery("#adname").text(data.adid_like)  
       		    		$('#makes').yhhDataTable({
       		    			'paginate':{
       		    				'changeDisplayLen':true,
@@ -389,8 +485,10 @@ License: You must have a valid license purchased only from themeforest(the above
       		    	
       		    }
       	});
-      
+  	 		}
         </script>
+        
+        
         <script type="text/javascript">
         
      

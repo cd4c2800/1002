@@ -41,7 +41,7 @@ public class Ada_ad_channelServiceImpl implements IAda_ad_channelService{
 		return null;
 	}
 	
-	public boolean delete(Long id) {
+	public boolean delete(Integer id) {
 		try {
 			this.ada_ad_channelDao.remove(id);
 			return true;
@@ -54,7 +54,7 @@ public class Ada_ad_channelServiceImpl implements IAda_ad_channelService{
 	public boolean batchDelete(List<Serializable> ada_ad_channelIds) {
 		// TODO Auto-generated method stub
 		for (Serializable id : ada_ad_channelIds) {
-			delete((Long) id);
+			delete((Integer) id);
 		}
 		return true;
 	}

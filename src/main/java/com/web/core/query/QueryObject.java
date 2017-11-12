@@ -213,7 +213,6 @@ public class QueryObject implements IQueryObject {
 			queryString += " and " + field + " " + handleExpression(expression)
 					+ ":" + para.getKey().toString();
 			params.put(para.getKey(), para.getValue());
-			System.out.println("queryString---------->"+queryString);
 		}
 		return this;
 	}
@@ -222,6 +221,7 @@ public class QueryObject implements IQueryObject {
 		if (field != null && para != null) {
 			queryString += " or " + field + " " + handleExpression(expression)
 					+ ":" + para.getKey().toString()+")";
+			params.put(para.getKey(), para.getValue());
 		}
 		return this;
 	}

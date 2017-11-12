@@ -6,13 +6,31 @@
   <packaging>war</packaging>
   <name>adaToshow</name>
   <description></description>
-
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+      <plugin>
+      	<artifactId>maven-war-plugin</artifactId>
+      	<configuration>
+      		<version>3.0</version>
+      	</configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
   <!-- properties 定义 ：用于定义依赖以及插件的自定义版本.以及可以设置工程的编译码表UTF-8 project.build.sourceEncoding:设置工程的编译码表UTF-8 -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.0.4.RELEASE</spring.version><!-- spring 的版本 -->
 		<hibernate.version>4.1.5.Final</hibernate.version>  
         <jackson.version>2.5.0</jackson.version>  
+        <spring.version>3.2.6.RELEASE</spring.version>
 	</properties>
 	
 	<!--dependencies 添加依赖关系  -->
@@ -80,26 +98,7 @@
 		
 		
 		<!-- hibernate -->  
-      	<dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-jpa</artifactId>
-        <version>1.5.3.RELEASE</version>
-	      </dependency>
-	      <dependency>
-	        <groupId>org.hibernate</groupId>
-	        <artifactId>hibernate-core</artifactId>
-	        <version>4.3.9.Final</version>
-	      </dependency>
-	      <dependency>
-	        <groupId>org.hibernate</groupId>
-	        <artifactId>hibernate-entitymanager</artifactId>
-	        <version>4.3.9.Final</version>
-	      </dependency>
-	      <dependency>
-	        <groupId>org.hibernate</groupId>
-	        <artifactId>hibernate-validator</artifactId>
-	        <version>4.3.2.Final</version>
-	      </dependency>
+      
         
 		
 		<!-- mysql连接 -->  
@@ -107,11 +106,7 @@
             <groupId>mysql</groupId>  
             <artifactId>mysql-connector-java</artifactId>  
             <version>5.0.5</version>  
-        </dependency>  
-  		
-  	
-  		
-  
+        </dependency> 
   
         <!-- c3p0数据源 -->  
         <dependency>  
@@ -171,14 +166,7 @@
 		    <artifactId>javax.persistence</artifactId>
 		    <version>2.0.0</version>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-orm</artifactId>
-		    <version>3.1.2.RELEASE</version>
-		</dependency>
-		
+				
 		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
 		<dependency>
 		    <groupId>net.sf.json-lib</groupId>
@@ -295,27 +283,28 @@
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
+		
+				<!-- hibernate -->  
+      	<dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+        <version>1.5.3.RELEASE</version>
+	      </dependency>
+	      <dependency>
+	        <groupId>org.hibernate</groupId>
+	        <artifactId>hibernate-core</artifactId>
+	        <version>4.3.9.Final</version>
+	      </dependency>
+	      <dependency>
+	        <groupId>org.hibernate</groupId>
+	        <artifactId>hibernate-entitymanager</artifactId>
+	        <version>4.3.9.Final</version>
+	      </dependency>
+	      <dependency>
+	        <groupId>org.hibernate</groupId>
+	        <artifactId>hibernate-validator</artifactId>
+	        <version>4.3.2.Final</version>
+	      </dependency>
 	</dependencies>
-  		<build>
-			<finalName>adaToshow</finalName>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-source-plugin</artifactId>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>2.6</version>
-				</plugin>
-			</plugins>
-		</build>
+  
 </project>

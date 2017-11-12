@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>添加广告</title>	
+	<title>添加站点</title>	
 	<meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap后台模版,Bootstrap教程,Bootstrap中文,后台管理系统模版,后台模版下载,后台管理系统,后台管理模版" />
 	<meta name="description" content="JS代码网提供Bootstrap模版,后台管理系统模版,后台管理界面,Bootstrap后台模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
 	<meta name="author" content="">
@@ -13,6 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
+	
 	<link rel="stylesheet" href="$!webPath/resources/css/bootstrap.css">
 	<link rel="stylesheet" href="$!webPath/resources/css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="$!webPath/resources/css/application.css">
@@ -83,7 +84,6 @@
 
 	//保存
 	function save(){
-		console.log("save");
 		if(jQuery("#name").val()==""){
 			layer.msg("请输入广告名称");
 			jQuery("#name").focus();
@@ -95,16 +95,15 @@
 			return false;
 		}
 		
-
 		jQuery.ajax({
 			type:"POST",
-			url:'$!webPath/user/save.htm',
+			url:'$!webPath/user/save_Ad.htm',
 	    	data:$("#contact-form").serialize() ,
 			dataType:'json',
 			success: function(data){
 				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 				if(data.code==100){
-					window.parent.location.href="$!webPath/guanggao.htm;
+					window.parent.location.href="$!webPath/user/menu.htm?item=index_AdSet";
 					
 				}else{
 					layer.msg("操作失败");
@@ -125,10 +124,9 @@
 
 <body>
 	
-		<form action="/" id="contact-form" class="form-horizontal" novalidate="novalidate" style="margin-bottom: 0px;">
+		<form action="/" id="contact-form" class="form-horizontal" novalidate="novalidate" style="margin-bottom: 0px;" >
 					<fieldset>
 					    <div class="control-group" style="margin-top: 10px;">
-					  		<input type="hidden"  name="stiteId" value="1">
 					      <label class="control-label" for="name">广告名称</label>
 					      <div class="controls">
 					        <input type="text" class="input-large" name="name" id="name">
@@ -141,7 +139,6 @@
 					      </div>
 					    </div>
 					  </fieldset>
-					 
 					</form>
 
 </body>

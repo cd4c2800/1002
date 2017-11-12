@@ -36,7 +36,7 @@ public class SiteServiceImpl implements ISiteService{
 		}
 	}
 	
-	public Site getObjById(Long id) {
+	public Site getObjById(Integer id) {
 		Site site = this.siteDao.get(id);
 		if (site != null) {
 			return site;
@@ -44,7 +44,7 @@ public class SiteServiceImpl implements ISiteService{
 		return null;
 	}
 	
-	public boolean delete(Long id) {
+	public boolean delete(Integer id) {
 		try {
 			this.siteDao.remove(id);
 			return true;
@@ -57,7 +57,7 @@ public class SiteServiceImpl implements ISiteService{
 	public boolean batchDelete(List<Serializable> userIds) {
 		// TODO Auto-generated method stub
 		for (Serializable id : userIds) {
-			delete((Long) id);
+			delete((Integer) id);
 		}
 		return true;
 	}

@@ -79,66 +79,6 @@ input.error,select.error{ color:#000;}
 .login li{ float:left; width:70px; height:45px ;color:#fff;}
 .login li span.login_img{ float:left; height:25px;width:100px; text-align:center; line-height:25px; overflow:hidden;}
 .login li span.login_word{ float:left; height:20px; line-height:20px; width:100px;text-align:center;}
-.nav{ float:left; padding-left:20px; margin-top:14px; _position:absolute}
-.nav ul{ float:left; height:50px;} 
-.nav ul li{height:50px; float:left; margin-right:16px; font-size:14px; cursor:pointer; background:url(images/nav_a_left.png) no-repeat}
-.nav ul li a{height:50px; background:url(images/nav_a.png) -70px center  no-repeat; display:block; padding-left:15px; padding-right:15px; color:#005384; _width:40px;cursor:pointer;transition: all 0.5s ease 0s;}
-.nav ul li a:hover{ background:url(images/nav_a.png) no-repeat; color:#fff;}
-.nav ul .this{ background:url(images/nav_a_this.png) no-repeat right top; height:58px; position:relative;color:#fff;}
-.nav ul .this a{ background:url(images/nav_a_this.png) no-repeat -70px top; height:58px; display:block; padding-left:15px; padding-right:15px; color:#fff;transition: all 0.5s ease 0s; }
-.nav ul .this a:hover{ background:url(images/nav_a_this.png) no-repeat center top; height:58px; display:block; padding-left:15px; padding-right:15px; color:#fff }
-.nav ul li  a em{ height:25px; display:block; padding-top:5px; *width:27px;cursor:pointer }
-.nav ul li  a b{ display:block; text-align:center; float:left;cursor:pointer }
-
-.nav ul li a .nav_home{ background:url(images/nav_home.png) no-repeat center center;}
-.nav ul li a:hover .nav_home{ background:url(images/nav_home_this.png) no-repeat center center; }
-.nav ul .this .nav_home{ background:url(images/nav_home_this.png) no-repeat center center; }
-
-.nav ul li a .nav_set{ background:url(images/nav_set.png) no-repeat center center;}
-.nav ul li a:hover .nav_set{ background:url(images/nav_set_this.png) no-repeat center center; }
-.nav ul .this .nav_set{ background:url(images/nav_set_this.png) no-repeat center center; }
-
-.nav ul li a .nav_product{ background:url(images/nav_product.png) no-repeat center center;}
-.nav ul li a:hover .nav_product{ background:url(images/nav_product_this.png) no-repeat center center; }
-.nav ul .this .nav_product{ background:url(images/nav_product_this.png) no-repeat center center; }
-
-.nav ul li a .nav_fitment{ background:url(images/nav_fitment.png) no-repeat center center;}
-.nav ul li a:hover .nav_fitment{ background:url(images/nav_fitment_this.png) no-repeat center center; }
-.nav ul .this .nav_fitment{ background:url(images/nav_fitment_this.png) no-repeat center center; }
-
-.nav ul li a .nav_shop{ background:url(images/nav_shop.png) no-repeat center center;}
-.nav ul li a:hover .nav_shop{ background:url(images/nav_shop_this.png) no-repeat center center; }
-.nav ul .this .nav_shop{ background:url(images/nav_shop_this.png) no-repeat center center; }
-
-.nav ul li a .nav_menber{ background:url(images/nav_menber.png) no-repeat center center;}
-.nav ul li a:hover .nav_menber{ background:url(images/nav_menber_this.png) no-repeat center center; }
-.nav ul .this .nav_menber{ background:url(images/nav_menber_this.png) no-repeat center center; }
-
-.nav ul li a .nav_pay{ background:url(images/nav_pay.png) no-repeat center center;}
-.nav ul li a:hover .nav_pay{ background:url(images/nav_pay_this.png) no-repeat center center; }
-.nav ul .this .nav_pay{ background:url(images/nav_pay_this.png) no-repeat center center; }
-
-.nav ul li a .nav_website{ background:url(images/nav_website.png) no-repeat center center;}
-.nav ul li a:hover .nav_website{ background:url(images/nav_website_this.png) no-repeat center center; }
-.nav ul .this .nav_website{ background:url(images/nav_website_this.png) no-repeat center center; }
-
-.nav ul li a .nav_tool{ background:url(images/nav_tool.png) no-repeat center center;}
-.nav ul li a:hover .nav_tool{ background:url(images/nav_tool_this.png) no-repeat center center; }
-.nav ul .this .nav_tool{ background:url(images/nav_tool_this.png) no-repeat center center; }
-
-.nav ul li a .nav_operate{ background:url(images/nav_operate.png) no-repeat center center;}
-.nav ul li a:hover .nav_operate{ background:url(images/nav_operate_this.png) no-repeat center center; }
-.nav ul .this .nav_operate{ background:url(images/nav_operate_this.png) no-repeat center center; }
-
-.nav ul li a .nav_self{ background:url(images/nav_self.png) no-repeat center center;}
-.nav ul li a:hover .nav_self{ background:url(images/nav_self_this.png) no-repeat center center; }
-.nav ul .this .nav_self{ background:url(images/nav_self_this.png) no-repeat center center; }
-
-.nav ul li a .nav_payoff{ background:url(images/nav_payoff.png) no-repeat center center;}
-.nav ul li a:hover .nav_payoff{ background:url(images/nav_payoff_this.png) no-repeat center center; }
-.nav ul .this .nav_payoff{ background:url(images/nav_payoff_this.png) no-repeat center center; }
-
-
 
 .index {
 	width:100%;

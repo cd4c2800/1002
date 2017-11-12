@@ -125,25 +125,32 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN PAGE TOP -->
                 <div class="page-top">
                    
-                    <!-- BEGIN TOP NAVIGATION MENU -->
                     <div class="top-menu">
                         <ul class="nav navbar-nav pull-right">
                             <!-- BEGIN USER LOGIN DROPDOWN -->
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user dropdown-dark">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <span class="username username-hide-on-mobile"> 张三 </span>
+                                    <span class="username username-hide-on-mobile"> $!user.userName</span>
                                     <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                                      </a>
-                                <ul class="dropdown-menu dropdown-menu-default">
-                                   
-                                    <li>
+                                <ul class="dropdown-menu dropdown-menu-default">                                  
+                                     <li>
                                         <a href="$!webPath/user/menu.htm?item=user_login">
                                             <i class="icon-key"></i> 退出登录 </a>
                                     </li>
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
+                        </ul>
+                    </div>
+                                      <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="dropdown dropdown-user dropdown-dark">                         
+                                <a href="$!webPath/user/menu.htm?item=index_SiteSet" class="dropdown-toggle" >
+                                    <span class="username username-hide-on-mobile"> 切换站点 </span>
+                                     </a>
+                            </li>
                         </ul>
                     </div>
                     <!-- END TOP NAVIGATION MENU -->
@@ -164,31 +171,31 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="page-sidebar navbar-collapse collapse">
                     <!-- BEGIN SIDEBAR MENU -->
                     <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                        <li class="nav-item  ">
-                            <a href="index.html" class="nav-link ">
+                        <li class="nav-item   ">
+                            <a href="$!webPath/user/menu.htm?item=index" class="nav-link " >
                                  <i class="icon-bar-chart"></i>
                                  <span class="title">首页</span>
                                   <span class="selected"></span>
                              </a>
                         </li>
-                        <li class="nav-item  ">
-                             <a href="index_OnLine.html" class="nav-link ">
+                        <li class="nav-item  active">
+                             <a href="#" class="nav-link ">
                                   <span class="title">当前在线</span>
                               </a>
                         </li>
                         <li class="nav-item  ">
-                              <a href="index_VisitDetails.html" class="nav-link ">
+                              <a href="$!webPath/user/menu.htm?item=index_VisitDetails" class="nav-link ">
                                     <span class="title">访问明细</span>
                               </a>
                         </li>
-                        <li class="nav-item  active">
-                             <a href="index_Source.html" class="nav-link ">
+                        <li class="nav-item  ">
+                             <a href="$!webPath/user/menu.htm?item=index_Source" class="nav-link ">
                                  <span class="title">来源分析</span>
                              </a>
                         </li>
                        
                         <li class="nav-item  ">
-                            <a href="index_Region.html" class="nav-link ">
+                            <a href="$!webPath/user/menu.htm?item=index_Region" class="nav-link ">
                                 <span class="title">地域分析</span>
                             </a>
                         </li>
@@ -201,12 +208,12 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="index_AdAnalysis.html" class="nav-link ">
+                                    <a href="$!webPath/user/menu.htm?item=index_AdAnalysis" class="nav-link ">
                                         <span class="title">广告分析</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="index_Channel.html" class="nav-link ">
+                                    <a href="$!webPath/user/menu.htm?item=index_Channel" class="nav-link ">
                                         <span class="title">渠道分析</span>
                                     </a>
                                 </li>
@@ -220,17 +227,17 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                             	<li class="nav-item  ">
-                                    <a href="index_SiteSet.html" class="nav-link ">
+                                    <a href="$!webPath/user/menu.htm?item=index_SiteSet" class="nav-link ">
                                         <span class="title">站点设置</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="index_AdSet.html" class="nav-link ">
+                                    <a href="$!webPath/user/menu.htm?item=index_AdSet" class="nav-link ">
                                         <span class="title">广告设置</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="index_User.html" class="nav-link ">
+                                    <a href="$!webPath/user/menu.htm?item=index_User" class="nav-link ">
                                         <span class="title">账户信息</span>
                                     </a>
                                 </li>
@@ -251,33 +258,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="page-head">
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
-                            <h1>直接输入网址或书签 - EIP
-                                <small>（2017-08-31 至2017-08-31）</small>
+                            <h1><span id="main">-EIP 分析</span>
+                                <small>$!time</small>
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
                     </div>
-                    <!-- END PAGE HEAD-->
-                    
-                    <!-- 搜索条件 -->
-                    <div class="row">
-                        <div class="col-lg-6 col-xs-12 col-sm-12" style="width: 100%;">
-                        	<div class="portlet light bordered">
-                        		<div class="portlet-title">
-                                    <div class="caption">
-                                    
-                                    	<button class="btn blue  btn-outline" type="button" style="border-color: #3598dc;background-color: #3598dc;color: #fff;">今天</button>
-                                    	<button class="btn blue  btn-outline" type="button">昨天</button>
-                                    	<button class="btn blue  btn-outline" type="button">最近七天</button>
-                                    
-                                                                        日期 <input id="indate" type="text" placeholder="请选择"  readonly class="workinput wicon mr25">
-                                    </div>
-                                    
-                                </div>
-                        	</div>
-                        </div>
-                    </div>
-                    
+                    <!-- END PAGE HEAD-->                
                     <!-- 来源列表 -->
                     <div class="row">
                         <div class="col-lg-6 col-xs-12 col-sm-12" style="width: 100%;">
@@ -297,7 +284,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<th class="th">异常类型</th>
 												<th class="th">操作</th>
 											</tr></thead>
-											<tbody>
+											<tbody id="eipB">
 											</tbody>
 										</table>
                                     </div>
@@ -381,34 +368,36 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- 新增 -->
         <script src="$!webPath/resources/js/jquery.paginate.js"></script>
         <script src="$!webPath/resources/js/jquery.yhhDataTable.js"></script>
-        <script src="$!webPath/resources/js/index.js"></script>
-        <script src="$!webPath/resources/js/jedate/jedate.js"></script>
-        <script src="$!webPath/resources/js/layer/layer.js"></script>
         
         <script type="text/javascript">
-        
-	      //选择日期
-	        jeDate({
-	       		dateCell:"#indate",//isinitVal:true,
-	       		format:"YYYY-MM-DD",
-	       	    isinitVal:true,
-	       	    skinCell:"jedateblue",
-	       		isTime:false, //isClear:false,
-	       		minDate:"2017-08-24",
-	       		maxDate:"2017-08-31"
-	       	});
-	      
-	      	//查看异常ip详情
-	        function details(){
-	        	layer.open({
-	        		  type: 2,
-	        		  title: '异常IP：125.84.89.32',
-	        		  skin: 'layui-layer-rim', //加上边框
-	        		  area: ['1000px', '600px'], //宽高
-	        		  content: 'Eip_details.html',
-	        		});
-	        	
-	        }
+        jQuery.ajax({
+            async: false, //定义 全局变量时 需加
+        	  type: 'POST',
+        	  url: "$!webPath/user/data/source/data.htm",
+        	  dataType: "json",
+        	  data:{referersId:"$!params.referersId",siteId:"$!params.siteId",starttime:"$!params.starttime",endtime:"$!params.endtime",way:"$!params.way"},
+        	  success:function(sdata){
+        		jQuery("#main").text(sdata.name+"- EIP 分析");
+      	    	$('#EIP').yhhDataTable({
+      	    		'paginate':{
+      	    			'changeDisplayLen':true,
+      	    			'type':'updown',
+      	    			'visibleGo': true
+      	    		},
+      	    		'tbodyRow':{
+      	    			'zebra':true
+      	    		},
+      	    		'tbodyData':{
+      	    			'enabled':true,  /*是否传入表格数据*/
+      	    			'source':sdata.data /*传入的表格数据*/
+      	    		}
+      	    	});       		  
+        	     }
+        	  });
+			jQuery("#eipB").children().find("a").click(function(){
+				var remoteip=jQuery(this).parent().parent().children().first().text();
+				jQuery(this).attr("href","$!webPath/user/data/source/details.htm?referersId=$!params.referersId&siteId=$!params.siteId&starttime=$!params.starttime&endtime=$!params.endtime&remoteip="+remoteip+"");
+			});
         
         </script>
         <!-- END THEME LAYOUT SCRIPTS -->

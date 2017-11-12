@@ -76,6 +76,9 @@ License: You must have a valid license purchased only from themeforest(the above
 .je-mr25 {
     margin-right: 25px;
 }
+#list{
+	float: left;
+}
 </style>
        </head>
     <!-- END HEAD -->
@@ -87,8 +90,8 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="$!webPath/user/menu.htm?item=index">
-                        <img src="$!webPath/resources/assets/layouts/layout4/img/logo-light.png" alt="logo" class="logo-default" /> </a>
+                    <a href="$!webPath/user/menu.htm?item=index" >
+                        <img src="$!webPath/resources/assets/layouts/layout4/img/logo-light.png" alt="logo" class="logo-default" /></a>
                     <div class="menu-toggler sidebar-toggler">
                         <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
                     </div>
@@ -101,25 +104,32 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN PAGE TOP -->
                 <div class="page-top">
                    
-                    <!-- BEGIN TOP NAVIGATION MENU -->
                     <div class="top-menu">
                         <ul class="nav navbar-nav pull-right">
                             <!-- BEGIN USER LOGIN DROPDOWN -->
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user dropdown-dark">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <span class="username username-hide-on-mobile"> 张三 </span>
+                                    <span class="username username-hide-on-mobile"> $!user.userName</span>
                                     <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                                      </a>
-                                <ul class="dropdown-menu dropdown-menu-default">
-                                   
-                                    <li>
+                                <ul class="dropdown-menu dropdown-menu-default">                                  
+                                     <li>
                                         <a href="$!webPath/user/menu.htm?item=user_login">
                                             <i class="icon-key"></i> 退出登录 </a>
                                     </li>
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
+                        </ul>
+                    </div>
+                    <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="dropdown dropdown-user dropdown-dark">                         
+                                <a href="$!webPath/user/menu.htm?item=index_SiteSet" class="dropdown-toggle" >
+                                    <span class="username username-hide-on-mobile"> 切换站点 </span>
+                                     </a>
+                            </li>
                         </ul>
                     </div>
                     <!-- END TOP NAVIGATION MENU -->
@@ -228,10 +238,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
                             <h1>当前在线
-                                <small id="timeCurrent"></small>
-                                    	<button class="btn blue  btn-outline" type="button" style="border-color: #3598dc;background-color: #3598dc;color: #fff;">今天</button>
-                                    	<button class="btn blue  btn-outline" type="button">昨天</button>
-                                    	<button class="btn blue  btn-outline" type="button">最近七天</button>           
+                                <small id="timeCurrent"></small>         
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
@@ -246,7 +253,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="display">
                                     <div class="number">
                                         <h3 id="" class="font-green-sharp">
-                                            <span id="pv" data-counter="counterup" data-value="$!visit.pv" >0</span>
+                                            <span id="pv" data-counter="counterup" data-value="0" >0</span>
                                         </h3>
                                         <small>PV（浏览次数）</small>
                                     </div>
@@ -259,7 +266,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="display">
                                     <div class="number">
                                         <h3 class="font-green-haze">
-                                            <span id="uv" data-counter="counterup" data-value="$!visit.uv">0</span>
+                                            <span id="uv" data-counter="counterup" data-value="0">0</span>
                                         </h3>
                                         <small>UV（独立访问次数）</small>
                                     </div>
@@ -271,7 +278,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="display">
                                     <div class="number">
                                         <h3 class="font-green-haze">
-                                            <span id="ip" data-counter="counterup" data-value="$!visit.ip">0</span>
+                                            <span id="ip" data-counter="counterup" data-value="0">0</span>
                                         </h3>
                                         <small>IP（独立IP）</small>
                                     </div>
@@ -464,10 +471,13 @@ License: You must have a valid license purchased only from themeforest(the above
               async: false, //定义 全局变量时 需加
           	  type: 'POST',
           	  url: "$!webPath/data/online.htm",
-          	  data:{userId:"$!user.id",siteId:1,timePre:timePre,timeCurrent:timeCurrent},
+          	  data:{userId:"$!user.id",timePre:timePre,timeCurrent:timeCurrent},
           	  dataType: "json",
           	  success:function(data){
           		sdata=data;
+          		jQuery("#pv").attr("data-value",data.pv);
+          		jQuery("#uv").attr("data-value",data.uv);
+          		jQuery("#ip").attr("data-value",data.ip);
           		 new Morris.Line({         	        	
        	          	// ID of the element in which to draw the chart.
        	          	element: 'morris_chart_1',

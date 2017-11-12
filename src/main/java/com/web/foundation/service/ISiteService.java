@@ -24,7 +24,7 @@ public interface ISiteService {
 	 * @param id
 	 * @return
 	 */
-	Site getObjById(Long id);
+	Site getObjById(Integer id);
 	
 	/**
 	 * 删除一个user
@@ -32,7 +32,7 @@ public interface ISiteService {
 	 * @param id
 	 * @return
 	 */
-	boolean delete(Long id);
+	boolean delete(Integer id);
 	
 	/**
 	 * 批量删除user

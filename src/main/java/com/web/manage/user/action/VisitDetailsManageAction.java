@@ -42,7 +42,7 @@ public class VisitDetailsManageAction {
 	@Autowired
 	private AreaUtil areaUtil;
 	/**
-	 * VisitDetails列表页
+	 * VisitDetails列表页 访问明细
 	 * 
 	 * @param currentPage
 	 * @param orderBy
@@ -57,23 +57,18 @@ public class VisitDetailsManageAction {
 		Integer siteId = (Integer) request.getSession().getAttribute("currentSiteId");
 		VisitDetailsQueryObject qo = new VisitDetailsQueryObject(currentPage, mv, "createTime","desc");
 		
-		
 		qo.addQuery("obj.siteId", new SysMap("siteId",CommUtil.null2Long(siteId)), "=");
-		if((beginTime==null || "".equals(beginTime))&&(endTime==null || "".equals(endTime))){//没有日期 默认查询昨天的统计数据
-			qo.addQuery("obj.createTime", new SysMap("startTime",CommUtil.getDayBegin()), "=");
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			beginTime = sdf.format(CommUtil.getDayBegin());
-			endTime = sdf.format(CommUtil.getDayEnd());
-		}
+		
 		if(ip!=null && !"".equals(ip)){
 			qo.addQuery("obj.remoteIp", new SysMap("remoteIp","%"+ip+"%"), "like");
 		}
 		if(beginTime!=null && !"".equals(beginTime)){
 			qo.addQuery("obj.createTime", new SysMap("beginTime",CommUtil.getDayBeginTime(beginTime)), ">=");
+			mv.addObject("beginTime", beginTime);
 		}
 		if(endTime!=null && !"".equals(endTime)){
-			qo.addQuery("obj.createTime", new SysMap("endTime",CommUtil.getDayBeginTime(endTime)), "<=");
-			System.out.println("--------->"+CommUtil.getDayBeginTime(endTime));
+			qo.addQuery("obj.createTime", new SysMap("endTime",CommUtil.getDayEndTime(endTime)), "<=");
+			mv.addObject("endTime", endTime);
 		}
 		
 		
@@ -82,8 +77,8 @@ public class VisitDetailsManageAction {
 		CommUtil.saveIPageList2ModelAndView("","","",pList, mv);
 		mv.addObject("areaUtil", areaUtil);
 		mv.addObject("ip", ip);
-		mv.addObject("beginTime", beginTime);
-		mv.addObject("endTime", endTime);
+		
+		
 		return mv;
 	}
 	/**

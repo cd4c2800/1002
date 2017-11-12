@@ -101,7 +101,6 @@ public class Sys_regionManageAction {
 		Sys_region sys_region =null;
 		if (id.equals("")) {
 			 sys_region = wf.toPo(request, Sys_region.class);
-			sys_region.setCreateTime(new Date());
 		}else{
 			Sys_region obj=this.sys_regionService.getObjById(Long.parseLong(id));
 			sys_region = (Sys_region)wf.toPo(request,obj);

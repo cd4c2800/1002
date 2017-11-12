@@ -13,7 +13,7 @@ import com.web.core.domain.IdEntity;
 @Table(name ="ada_access_day_iparea")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 /**
- * 地域分析
+ * 地域分析-eip
  * @author ASUS
  *
  */

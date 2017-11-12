@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -7,7 +8,7 @@
     <!-- BEGIN HEAD -->
 
     <head>
-        <meta charset="utf-8" />
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <title>站点设置</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -38,7 +39,6 @@
         <link rel="shortcut icon" href="favicon.ico" /> 
         
     	<link href="$!webPath/resources/css/template.css" rel="stylesheet" type="text/css" />
-    	
         </head>
     <!-- END HEAD -->
     	
@@ -121,11 +121,8 @@
                         <div class="col-lg-6 col-xs-12 col-sm-12" style="width: 100%;">
                             <div class="portlet light bordered" style="margin-bottom: 0px;padding: 0px;">
                                 <div class="portlet-title">
-                                    <div class="caption">
-                                        
-                                    </div>
                                     <div class="actions">
-                                    	<a class="btn blue btn-outline btn-circle btn-sm" onclick="add();" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    	<a class="btn blue btn-outline btn-circle btn-sm" onclick="add(0);" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 											+添加站点
 										</a>
                                     </div>
@@ -140,39 +137,14 @@
 													<th><span class="form_btna">操作</span></th>
 												</tr>
 											</thead>
-											<tbody>
-											#foreach($obj in $objs)
-												<tr>
-													<td align="center">$!obj.siteName</td>
-													<td align="center"><a href="$!obj.siteHome" target="_black">$!obj.siteHome</a> </td>													
-													<td align="center">
-														<a class="viewReport" href="$!webPath/user/view.htm?siteId=$!obj.id">查看报表</a>
-														<a>统计代码</a>
-														<a href="$!webPath/user/ad_list.htm?siteid=$!obj.id">设置</a>
-														<a>删除</a>
-													</td>
-												</tr>
-											#end
+											<tbody id="sourceData">
 											</tbody>
 										</table>
                                     </div>
-                                </div>
+                                </div>                   
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- 分页 -->
-                    <!-- 
-                    <div class="operate_bar" style="height: 50px;">
-					    <div class="fenye">
-					     <span id="queryCondition" style="display:none"> </span>
-					    <input type="hidden" name="currentPage" id="currentPage" value="$!currentPage" />
-						  <input name="mulitId" type="hidden" id="mulitId" />
-						  $!gotoPageFormHTML</div>
-					 </div>  
-                    </form>
-                </div>
-                <!-- END CONTENT BODY -->
             </div>
             <!-- END CONTENT -->
     
@@ -209,9 +181,34 @@
         <script src="$!webPath/resources/js/jquery.yhhDataTable.js"></script>
         <script src="$!webPath/resources/js/index.js"></script>
         <script src="$!webPath/resources/js/layer/layer.js"></script>
-        <script src="$!webPath/resources/js/jquery.shop.common.js"></script>
         <script type="text/javascript">
-        //
+  	  	//发送请求
+  	  	var tdstr="";
+  		var siteArr=null;
+        jQuery.ajax({
+             async: false, //定义 全局变量时 需加
+         	  type: 'POST',
+         	  url: "$!webPath/set/siteList.htm",
+         	  data:{user_id:"$!user.id"},
+         	  dataType: "json",
+         	  success:function(data){
+         		 siteArr=data.site;
+   				if(siteArr!=null){
+           		  for ( var item in siteArr) {
+           			  var it=siteArr[item];
+           				tdstr="<td align='center'>"+it.siteName+"</td>";
+           				tdstr+="<td align='center'><a href='"+it.siteHome+"' target='_black'>"+it.siteHome+"</a></td>";
+           				tdstr+="<td align='center'>";
+           				tdstr+="<a class='viewReport' href='$!webPath/user/view.htm?siteId="+it.id+"' >查看报表</a>&nbsp;";
+           				tdstr+="<a onclick='code();'>统计代码</a>&nbsp;";
+           				tdstr+="<a href='$!webPath/user/menu.htm?item=index_AdSet&siteId="+it.id+"'>查看广告</a>&nbsp;";
+           				tdstr+="<a onclick=\"add("+it.id+");\">编辑</a>&nbsp;";
+           				tdstr+="<a onclick='del("+it.id+");'>删除</a>";
+           				jQuery("#sourceData").append("<tr>"+tdstr+"</tr>");
+  					}   						
+   				}    		  
+         	  }});
+        
      	 //统计代码
         function code(){
         	layer.open({
@@ -219,26 +216,48 @@
         		  title: '统计代码',
         		  skin: 'layui-layer-rim', //加上边框
         		  area: ['420px', '260px'], //宽高
-        		  content: 'code.html',
+        		  content: '$!webPath/user/menu.htm?item=code',
         		});
         	
         }
+     	 function update(arg0){
+     		jQuery.ajax({
+		             async: false, //定义 全局变量时 需加
+		         	  type: 'POST',
+		         	  url: "$!webPath/set/siteDelete.htm",
+		         	  data:{siteId:id},
+		         	  dataType: "json",
+		         	  success:function(data){
+		         			if(data.result) {
+		         				//layer.msg('删除成功！');
+		         				location.reload();
+		         			}
+		         			else layer.msg('删除失败！')
+		         }});			
+   		 
+     		 
+     		 
+     		 
+     		 
+     	 }
+     	 
+     	 
 	      //新增站点
-	      function add(){
+	      function add(id){
 	    	  layer.open({
 				    type: 2,
-			 	   area: ['420px', '260px'],
-			 	  skin: 'layui-layer-rim', //加上边框
-			 	 btn : [ '保存', '取消' ],
-			 	  title:'新增站点',
-			 	   fix: false, //不固定
-			  	  maxmin: true,
-			  	  content: '$!webPath/user/go_addSite.htm',
-			  	  yes: function(index, layero){
+			 	  	area: ['420px', '260px'],
+			 	  	skin: 'layui-layer-rim', //加上边框
+			 	 	btn : [ '保存', '取消' ],
+			 	  	title:'站点设置',
+			 	   	fix: false, //不固定
+			  	 	maxmin: true,
+			  	  	content:'$!webPath/set/toAdd.htm?id='+id+'',
+			  	  	yes: function(index, layero){
 				        //按钮【按钮一】的回调
 				        //得到iframe页的窗口对象，执行iframe页的方法
-				       var iframeWin = window[layero.find('iframe')[0]['name']]; 
-				       iframeWin.save();
+				       	var iframeWin = window[layero.find('iframe')[0]['name']]; 
+				       	iframeWin.save();
 		    	  },
 		    	  cancel: function(index){
 		       	 //按钮【按钮二】的回调
@@ -247,17 +266,29 @@
 				});
 	      }
 	      
+	 
 	      //删除站点
-	      function del(){
+	      function del(id){
 	    	  layer.confirm('删除站点后，数据及配置均将不可恢复。', {title:'确定删除此站点？',area: ['420px', '160px'],
 	    		  btn: ['确定','取消'] //按钮
-	    		}, function(){
-	    		  layer.msg('删除成功！');
-	    		}, function(){
+	    		}, function(){		//执行删除 
+	 		       jQuery.ajax({
+  		             async: false, //定义 全局变量时 需加
+  		         	  type: 'POST',
+  		         	  url: "$!webPath/set/siteDelete.htm",
+  		         	  data:{siteId:id},
+  		         	  dataType: "json",
+  		         	  success:function(data){
+  		         			if(data.result) {
+  		         				//layer.msg('删除成功！');
+  		         				location.reload();
+  		         			}
+  		         			else layer.msg('删除失败！')
+  		         }});			
 	    		 
+	    		}, function(){		//取消操作
 	    		});
-	      }
-       
+	      }      
         </script>
         <!-- END THEME LAYOUT SCRIPTS -->
     </body>

@@ -125,7 +125,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user dropdown-dark">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <span class="username username-hide-on-mobile"> 张三 </span>
+                                    <span class="username username-hide-on-mobile"> $!user.userName </span>
                                     <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                                      </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
@@ -137,6 +137,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
+                        </ul>
+                    </div>
+                    <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="dropdown dropdown-user dropdown-dark">                         
+                                <a href="$!webPath/user/menu.htm?item=index_SiteSet" class="dropdown-toggle" >
+                                    <span class="username username-hide-on-mobile"> 切换站点 </span>
+                                     </a>
+                            </li>
                         </ul>
                     </div>
                     <!-- END TOP NAVIGATION MENU -->
@@ -377,7 +386,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     
                     
                     <!-- 地图 -->
-                    <div class="row" style="display: none;">
+                    <div class="row" style="">
                         <div class="col-lg-6 col-xs-12 col-sm-12" >
                             <div class="portlet light bordered">
                                 <div class="portlet-title">
@@ -408,7 +417,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- 地域列表 -->
                     <div class="row">
                         <div class="col-lg-6 col-xs-12 col-sm-12" style="width: 100%;">
-                            <div class="portlet light bordered">
+                            <div class="portlet light bordered" style="padding: 12px 20px 0px;margin-bottom: 0px;">
                                 <div class="portlet-title">
                                     <div class="caption">
                                         <span class="caption-subject bold uppercase font-dark">地域分类</span>
@@ -438,14 +447,18 @@ License: You must have a valid license purchased only from themeforest(the above
 															<td align="center">$!obj.uv</td>
 															<td align="center">$!obj.ip</td>
 															<td align="center">$!obj.epv</td>
+															
 															<td align="center">$!obj.euv</td>
-															<td align="center" style="font-size: 14px;"><a href="$!webPath/user/region_eip.htm?provinceName=$!provinceName">$!obj.eip</a></td>
+															<td align="center">$!obj.eip</td>
+															
+															<!-- <td align="center" style="font-size: 14px;"><a href="$!webPath/user/region_euv.htm?provinceName=$!provinceName&provinceId=$!obj.provinceId&beginTime=$!beginTime&endTime=$!endTime">$!obj.euv</a></td>
+															<td align="center" style="font-size: 14px;"><a href="$!webPath/user/region_eip.htm?provinceName=$!provinceName&provinceId=$!obj.provinceId&beginTime=$!beginTime&endTime=$!endTime">$!obj.eip</a></td> -->
 															<!-- <td align="center"><a href="$!webPath//user/region_Channel.htm">查看详情</a></td> -->
 														</tr>
 													#end
 												#else
 													<tr>
-														<td align="center" colspan="4"><span>该搜索暂时没有数据！</span></td>
+														<td align="center" colspan="7"><span>该搜索暂时没有数据！</span></td>
 													</tr>
 												#end	
 											</tbody>
@@ -604,42 +617,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     show: true
                                 }
                             },
-                            data:[
-                                {name: '北京',value: randomData() },
-                                {name: '天津',value: randomData() },
-                                {name: '上海',value: randomData() },
-                                {name: '重庆',value: randomData() },
-                                {name: '河北',value: randomData() },
-                                {name: '河南',value: randomData() },
-                                {name: '云南',value: randomData() },
-                                {name: '辽宁',value: randomData() },
-                                {name: '黑龙江',value: randomData() },
-                                {name: '湖南',value: randomData() },
-                                {name: '安徽',value: randomData() },
-                                {name: '山东',value: randomData() },
-                                {name: '新疆',value: 52 },
-                                {name: '江苏',value: randomData() },
-                                {name: '浙江',value: randomData() },
-                                {name: '江西',value: randomData() },
-                                {name: '湖北',value: randomData() },
-                                {name: '广西',value: randomData() },
-                                {name: '甘肃',value: randomData() },
-                                {name: '山西',value: randomData() },
-                                {name: '内蒙古',value: randomData() },
-                                {name: '陕西',value: randomData() },
-                                {name: '吉林',value: randomData() },
-                                {name: '福建',value: randomData() },
-                                {name: '贵州',value: randomData() },
-                                {name: '广东',value: randomData() },
-                                {name: '青海',value: randomData() },
-                                {name: '西藏',value: randomData() },
-                                {name: '四川',value: randomData() },
-                                {name: '宁夏',value: randomData() },
-                                {name: '海南',value: randomData() },
-                                {name: '台湾',value: randomData() },
-                                {name: '香港',value: randomData() },
-                                {name: '澳门',value: randomData() }
-                            ]
+                            data:$!data
                         }
                         
                     ]

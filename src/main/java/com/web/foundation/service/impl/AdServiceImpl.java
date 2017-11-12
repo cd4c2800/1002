@@ -41,7 +41,7 @@ public class AdServiceImpl implements IAdService{
 		return null;
 	}
 	
-	public boolean delete(Long id) {
+	public boolean delete(Integer id) {
 		try {
 			this.adDao.remove(id);
 			return true;
@@ -54,7 +54,7 @@ public class AdServiceImpl implements IAdService{
 	public boolean batchDelete(List<Serializable> adIds) {
 		// TODO Auto-generated method stub
 		for (Serializable id : adIds) {
-			delete((Long) id);
+			delete((Integer) id);
 		}
 		return true;
 	}

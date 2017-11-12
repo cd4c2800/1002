@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
-import com.utils.ExplorerUtil;
 import com.web.core.domain.virtual.SysMap;
 import com.web.core.mv.JModelAndView;
 import com.web.core.query.support.IPageList;
@@ -38,6 +37,8 @@ import com.web.foundation.domain.query.SiteQueryObject;
 import com.web.foundation.service.IAda_ad_channelService;
 import com.web.foundation.service.IAda_collect_access_logService;
 import com.web.foundation.service.ISys_regionService;
+import com.web.utils.explorer.ExplorerUtil;
+import com.web.utils.response.ResponseData;
 /**
  * 
  * 当前在线 数据处理
@@ -57,8 +58,9 @@ public class OnlineAciton {
 	 * */
 	@RequestMapping("/data/online.htm")
 	public void list(HttpServletRequest request,HttpServletResponse response,
-			String currentPage,Integer userId,Integer siteId,Date timePre,Date timeCurrent){
+			String currentPage,Integer userId,Date timePre,Date timeCurrent){
 		//当前用户 、当前站点  当前时间段的 访问记录
+		Integer siteId = (Integer) request.getSession().getAttribute("currentSiteId");
 		Map params = new HashMap();
 		params.put("siteid", siteId);
 		params.put("timePre", timePre);
@@ -99,25 +101,7 @@ public class OnlineAciton {
 		result.put("page",data);	
 		String[][] onlineDetail = onlineDetail(access);
 		result.put("onlineDetail",onlineDetail);	
-		String json = Json.toJson(result, JsonFormat.compact());
-		response.setContentType("text/plain");
-		response.setHeader("Cache-Control", "no-cache");
-		response.setCharacterEncoding("UTF-8");
-		PrintWriter writer;
-		try {
-			writer = response.getWriter();
-			writer.print(json);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		
-		
-		
-		
-		
-		
+		ResponseData.responseData(response, result);//向页面 相应 数据		
 	}
 
 	private  String[][] onlineDetail(List<Ada_collect_access_log> access){

@@ -1,4 +1,4 @@
-package com.web.manage.user.action;
+﻿package com.web.manage.user.action;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -72,7 +72,7 @@ public class UserLoginAction {
             }*/
             User users = rUser.get(0);
             session.setAttribute("user", users);
-            ret.put("url", "/user/site_list.htm");
+            ret.put("url", "/user/menu.htm?item=index_SiteSet");
         } else {
             ret.put("msg", 119);
         }
@@ -302,6 +302,45 @@ public class UserLoginAction {
         	}
        
         return retJson.toString();
+    }
+
+ 
+    /**
+     * 修改个人信息
+     *（zhou 10.30）
+     * @param code
+     * @param newPwd
+     * @param session
+     * @return added by lyh 2016/5/11
+     */
+    @RequestMapping(value = "/user/update_user.htm", method = RequestMethod.POST)
+    @Transactional
+    @ResponseBody
+    public String update_user(String email,HttpServletRequest request,String id,String password) {
+        JSONObject resultJson = new JSONObject();   
+        Map params = new HashMap();
+       	params.put("id", Integer.parseInt(id));
+   		//params.put("password", password);
+   		List<User>  rUserM = this.iUserService.query("select obj from User obj where obj.id=:id", params, -1, -1);
+        
+        if(rUserM.get(0).getEmail().equals(email)){
+        	
+        }else{
+        if (!"".equals(email) && email != null && !"null".equals(email)) {
+        	Map paramsEmaill = new HashMap();
+        	paramsEmaill.put("email", email);
+    		//params.put("password", password);
+    		List<User>  rUserM1 = this.iUserService.query("select obj from User obj where obj.email=:email", paramsEmaill, -1, -1);
+            if (rUserM1.size() >0) {
+            	  resultJson.put("msg", 96); //邮箱存在
+            	  return resultJson.toString();
+            }
+        }
+    }
+        rUserM.get(0).setPassword(password);
+        this.iUserService.update(rUserM.get(0));
+        resultJson.put("status", "success");
+        return resultJson.toString();
     }
 	
 }

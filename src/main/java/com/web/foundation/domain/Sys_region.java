@@ -1,13 +1,22 @@
 package com.web.foundation.domain;
 
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.math.IEEE754rUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import com.web.core.domain.IdEntity;
+
+
 
 /**
  * 
@@ -16,11 +25,26 @@ import com.web.core.domain.IdEntity;
 @Entity
 @Table(name ="sys_region")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Sys_region  extends IdEntity{
+public class Sys_region {
 
-	private static final long serialVersionUID = -7597810101189737207L;
+	/**
+	 * 
+	 */
 
 
+	private static final long serialVersionUID = -7741168269971132706L;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique = true, nullable = false)
+	private int id;// 域模型id，这里为自增类型
 	private String name;  			//简称
 
 	private String fullname; 	 	//全称
