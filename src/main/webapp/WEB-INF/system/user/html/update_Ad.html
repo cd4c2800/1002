@@ -1,0 +1,145 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>添加站点</title>	
+	<meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap后台模版,Bootstrap教程,Bootstrap中文,后台管理系统模版,后台模版下载,后台管理系统,后台管理模版" />
+	<meta name="description" content="JS代码网提供Bootstrap模版,后台管理系统模版,后台管理界面,Bootstrap后台模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	
+	<link rel="stylesheet" href="$!webPath/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="$!webPath/resources/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="$!webPath/resources/css/application.css">
+	<script src="$!webPath/resources/js/jquery-1.12.2.min.js"></script>
+	<script src="$!webPath/resources/js/layer/layer.js"></script>
+
+<style type="text/css">
+.siteListTopFurDiv {
+    overflow: hidden;
+}
+.report_data_table {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    z-index: 20;
+}
+.report_data_table tbody{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.report_data_table tr.tab_title {
+    background: #e7e7e7 none repeat scroll 0 0;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.report_data_table td {
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #dedede;
+    border-top: 1px solid #ccc;
+    font-size: 12px;
+    line-height: 25px;
+    padding: 0 5px;
+    text-align: center;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+.report_data {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    z-index: 20;
+}
+.report_data tbody {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.report_data .slist-bg-white {
+    background-color: #fff;
+}
+.report_data   td {
+    border-bottom: 1px solid #e9e9e9;
+    border-right: 1px solid #dedede;
+    border-top: 1px solid #ccc;
+    font-size: 12px;
+    line-height: 25px;
+    padding: 0 5px;
+    text-align: center;
+}
+
+</style>
+<script type="text/javascript">
+
+	//保存
+	function update(){
+		if(jQuery("#name").val()==""){
+			layer.msg("请输入广告名称");
+			jQuery("#name").focus();
+			return false;
+		}
+		if(jQuery("#prefix").val()==""){
+			layer.msg("请输入广告链接");
+			jQuery("#prefix").focus();
+			return false;
+		}
+		
+		jQuery.ajax({
+			type:"POST",
+			url:'$!webPath/user/update_Ad.htm',
+	    	data:$("#contact-form").serialize() ,
+			dataType:'json',
+			success: function(data){
+				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+				if(data.code==100){
+					window.parent.location.href="$!webPath/user/menu.htm?item=index_AdSet";	
+				}else{
+					layer.msg("操作失败");
+				}
+				 
+			}
+		});
+	}
+	
+	//返回
+	function close(){
+		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+		layer.close(index); //关闭弹窗
+	}
+	
+</script>
+</head>
+
+<body>
+	
+		<form action="/" id="contact-form" class="form-horizontal" novalidate="novalidate" style="margin-bottom: 0px;" >
+					<fieldset>
+					    <div class="control-group" style="margin-top: 10px;">
+					      <label class="control-label" for="name">广告名称</label>
+					      <div class="controls">
+					        <input type="text" class="input-large" name="name" id="name" value="$!name">
+					      </div>
+					    </div>
+					    <div class="control-group" style="margin-bottom: 0px;">
+					      <label class="control-label" for="email">广告链接</label>
+					      <div class="controls">
+					        <input type="text" class="input-large" name="prefix" id="prefix" value="$!prefix">
+					      </div>
+					    </div>
+					     <input type="hidden" id="id"  name="id" value="$!id">
+					  </fieldset>
+					</form>
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+        <meta charset="utf-8" />
+        <title>访问明细列表</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="Preview page of Metronic Admin Theme #4 for statistics, charts, recent events and reports" name="description" />
+        <meta content="" name="author" />
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="$!webPath/resources/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL STYLES -->
+        <link href="$!webPath/resources/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="$!webPath/resources/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
+        <link href="$!webPath/resources/assets/layouts/layout4/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="$!webPath/resources/assets/layouts/layout4/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="$!webPath/resources/assets/layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME LAYOUT STYLES -->
+        <link rel="shortcut icon" href="favicon.ico" /> </head>
+    <!-- END HEAD -->
+    	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    	<link href="$!webPath/resources/css/jquery.paginate.css" rel="stylesheet" type="text/css" />
+    	<link href="$!webPath/resources/css/jquery.yhhDataTable.css" rel="stylesheet" type="text/css" />
+    	
+<style type="text/css">
+
+.workinput {
+    background-color: #fff;
+    border: 1px solid #a5d2ec;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 5px;
+    width: 140px;
+}
+.wicon {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAQCAYAAADj5tSrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwNi8xNS8xNGnF/oAAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAAAoElEQVQ4jWPceOnNfwYqAz9dYRQ+E7UtwAaGjyUsDAyYYUgJ2HT5LXZLcEmSCnA6duOlN///////H0bDALl8dPH/////Z8FuNW6Qtvw2nL3lyjsGBgYGhlmRqnj1kGwJuqHIlhJlCXq8EOITEsdqCXLEbbr8FisfFkTo+vBZRFZwERNEFFkCiw90nxJtCalxQmzegltCzVyP1RJq5HZ8AABuNZr0628DMwAAAABJRU5ErkJggg==");
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+.je-mr25 {
+    margin-right: 25px;
+}
+
+
+</style>
+        </head>
+    <!-- END HEAD -->
+    	
+
+    <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="$!webPath/user/menu.htm?item=index">
+                        <img src="$!webPath/resources/assets/layouts/layout4/img/logo-light.png" alt="logo" class="logo-default" /> </a>
+                    <div class="menu-toggler sidebar-toggler">
+                        <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+                    </div>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                
+                <!-- BEGIN PAGE TOP -->
+                <div class="page-top">
+                   
+                    <!-- BEGIN TOP NAVIGATION MENU -->
+                   <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+                            <!-- BEGIN USER LOGIN DROPDOWN -->
+                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                            <li class="dropdown dropdown-user dropdown-dark">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <span class="username username-hide-on-mobile"> $!user.userName</span>
+                                    <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
+                                     </a>
+                                <ul class="dropdown-menu dropdown-menu-default">                                  
+                                     <li>
+                                        <a href="$!webPath/user/menu.htm?item=user_login">
+                                            <i class="icon-key"></i> 退出登录 </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- END USER LOGIN DROPDOWN -->
+                        </ul>
+                    </div>
+                                      <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="dropdown dropdown-user dropdown-dark">                         
+                                <a href="$!webPath/user/menu.htm?item=index_SiteSet" class="dropdown-toggle" >
+                                    <span class="username username-hide-on-mobile"> 切换站点 </span>
+                                     </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END TOP NAVIGATION MENU -->
+                </div>
+                <!-- END PAGE TOP -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <!-- BEGIN SIDEBAR -->
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item  ">
+                            <a href="$!webPath/user/menu.htm?item=index" class="nav-link ">
+                                 <i class="icon-bar-chart"></i>
+                                 <span class="title">首页</span>
+                                  <span class="selected"></span>
+                             </a>
+                        </li>
+                        <li class="nav-item  ">
+                             <a href="$!webPath/user/menu.htm?item=index_OnLine" class="nav-link ">
+                                  <span class="title">当前在线</span>
+                              </a>
+                        </li>
+                        <li class="nav-item active ">
+                              <a href="#" class="nav-link ">
+                                    <span class="title">访问明细</span>
+                              </a>
+                        </li>
+                        <li class="nav-item  ">
+                             <a href="$!webPath/user/menu.htm?item=index_Source" class="nav-link ">
+                                 <span class="title">来源分析</span>
+                             </a>
+                        </li>
+                       
+                        <li class="nav-item  ">
+                            <a href="$!webPath/user/menu.htm?item=index_Region" class="nav-link ">
+                                <span class="title">地域分析</span>
+                            </a>
+                        </li>
+                          
+                         <!-- 广告分析 -->
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <span class="title">广告分析</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="$!webPath/user/menu.htm?item=index_AdAnalysis" class="nav-link ">
+                                        <span class="title">广告分析</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="$!webPath/user/menu.htm?item=index_Channel" class="nav-link ">
+                                        <span class="title">渠道分析</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- 设置 -->
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <span class="title">设置</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                            	<li class="nav-item  ">
+                                    <a href="$!webPath/user/menu.htm?item=index_SiteSet" class="nav-link ">
+                                        <span class="title">站点设置</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="$!webPath/user/menu.htm?item=index_AdSet" class="nav-link ">
+                                        <span class="title">广告设置</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="$!webPath/user/menu.htm?item=index_User" class="nav-link ">
+                                        <span class="title">账户信息</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEAD-->
+                    <div class="page-head">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1><span >$!name</span>
+                                <small>$!time</small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                    <!-- END PAGE HEAD-->
+                    
+                    <!-- BEGIN PAGE BASE CONTENT -->
+                    <!-- 访问明细列表 -->
+                    <div class="row">
+                        <div class="col-lg-6 col-xs-12 col-sm-12" style="width: 100%;">
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <span class="caption-subject bold uppercase font-dark">访问明细列表</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div  style="height:auto;">
+                                    	<table id="testtable3">
+											<thead><tr>
+												<th>访问时间</th><th>IP</th><th>地区</th><th>渠道</th><th>客户端</th><th>受访URL</th>
+											</tr></thead>
+											<tbody>
+												
+											</tbody>
+										</table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+    		<span hidden="hidden" id="source">$!source</span>
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="page-footer-inner"> 2016 &copy; Metronic Theme By
+                <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
+                <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+        <div class="quick-nav-overlay"></div>
+        <!-- END QUICK NAV -->		
+        <!-- 新增 -->
+        <script src="$!webPath/resources/assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/js/jquery-1.12.2.min.js"></script>
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="$!webPath/resources/assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="$!webPath/resources/js/jedate/jedate.js"></script>
+        <script src="$!webPath/resources/js/jquery.paginate.js"></script>
+        <script src="$!webPath/resources/js/jquery.yhhDataTable.js"></script>
+        <!--  <script src="$!webPath/resources/js/index.js"></script>-->
+        <script type="text/javascript">
+        var data=jQuery("#source").text();
+        var arr=eval(data);
+	    	$('#testtable3').yhhDataTable({
+  	    		'paginate':{
+  	    			'changeDisplayLen':true,
+  	    			'type':'updown',
+  	    			'visibleGo': true
+  	    		},
+  	    		'tbodyRow':{
+  	    			'zebra':true
+  	    		},
+  	    		'tbodyData':{
+  	    			'enabled':true,  /*是否传入表格数据*/
+  	    			'source':arr /*传入的表格数据*/
+  	    		}
+  	    	}); 
+   
+       
+        </script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+    </body>
+
+</html>
