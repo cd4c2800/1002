@@ -1,4 +1,5 @@
-﻿package com.web.manage.user.action;
+
+package com.web.manage.user.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;

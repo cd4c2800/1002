@@ -2,7 +2,7 @@ package com.web.core.base;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Iterator; 
 import java.util.List;
 import java.util.Map;
 
@@ -331,24 +331,26 @@ public class GenericEntityDao extends JpaDaoSupport {
 	 * 
 	 * */
 	public Long getSum(final String queryStr,final Map params) {
-		Long pv=0L;
-		 List object = this.getJpaTemplate().execute(new JpaCallback() {
-			@Override
-			public Object doInJpa(EntityManager em) throws PersistenceException {
-				// TODO Auto-generated method stub
-				Query query = em.createQuery(queryStr);
-				if (params != null && params.size() > 0) {
-					for (Object key : params.keySet()) {
-						query.setParameter(key.toString(), params.get(key));
-					}
-				}
-				query.setHint("org.hibernate.cacheable", true);
-				return query.getResultList();
-			}
-
-		});
-		if (object!=null&&!object.isEmpty()) pv=Long.valueOf(object.get(0).toString());
-		return pv;
+		/** wanghl **/
+//		Long pv=0L;
+//		 List object = this.getJpaTemplate().execute(new JpaCallback() {
+//			@Override
+//			public Object doInJpa(EntityManager em) throws PersistenceException {
+//				// TODO Auto-generated method stub
+//				Query query = em.createQuery(queryStr);
+//				if (params != null && params.size() > 0) {
+//					for (Object key : params.keySet()) {
+//						query.setParameter(key.toString(), params.get(key));
+//					}
+//				}
+//				query.setHint("org.hibernate.cacheable", true);
+//				return query.getResultList();
+//			}
+//
+//		});
+//		if (object!=null&&!object.isEmpty()) pv=Long.valueOf(object.get(0).toString());
+//		return pv;
+		return 0l;
 	}
 
 	public String getName(final String string, final Map params) {

@@ -121,7 +121,8 @@ public class GenericDAO<T> implements com.web.core.dao.IGenericDAO<T> {
 	}
 	public void remove(Serializable id) {
 		// TODO Auto-generated method stub
-		this.getGeDao().remove(this.entityClass, id);
+		/** **/
+//		this.getGeDao().remove(this.entityClass, id);
 	}
 
 	public void save(Object newInstance) {

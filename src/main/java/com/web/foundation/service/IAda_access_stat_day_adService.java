@@ -1,4 +1,4 @@
-﻿package com.web.foundation.service;
+package com.web.foundation.service;
 
 import java.io.Serializable;
 import java.util.List;

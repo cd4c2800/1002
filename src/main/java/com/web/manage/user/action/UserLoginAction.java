@@ -1,4 +1,4 @@
-﻿package com.web.manage.user.action;
+package com.web.manage.user.action;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
