@@ -6,24 +6,7 @@
   <packaging>war</packaging>
   <name>adaToshow</name>
   <description></description>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-      </plugin>
-      <plugin>
-      	<artifactId>maven-war-plugin</artifactId>
-      	<configuration>
-      		<version>3.0</version>
-      	</configuration>
-      </plugin>
-    </plugins>
-  </build>
-  
+
   <!-- properties 定义 ：用于定义依赖以及插件的自定义版本.以及可以设置工程的编译码表UTF-8 project.build.sourceEncoding:设置工程的编译码表UTF-8 -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
